@@ -20,13 +20,18 @@ body {
     color: white;
 }
 
-.navbar .logo {
+.logo {
+    display: flex;
+    align-items: center;
     font-size: 24px;
     font-weight: bold;
 }
 
-.navbar .logo span {
-    color: #e67e22;
+/* Logo resmi için boyutlandırma */
+.logo-resim {
+    width: 40px;  /* Genişlik */
+    height: 40px; /* Yükseklik */
+    margin-right: 10px; /* Yazıyla logo arasında boşluk */
 }
 
 .navbar ul {
@@ -41,14 +46,15 @@ body {
     font-weight: bold;
 }
 
+
 /* Hero Section */
 .hero {
     text-align: center;
-    background-image: url('https://source.unsplash.com/1600x900/?car');
+    background-image: url('../images/logo.jpeg');
     background-size: cover;
     background-position: center;
     padding: 100px 20px;
-    color: white;
+    color: red;
     height: 80vh;
 }
 
