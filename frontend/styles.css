@@ -31,7 +31,7 @@ body {
 .logo-resim {
     width: 40px;  /* Genişlik */
     height: 40px; /* Yükseklik */
-    margin-right: 10px; /* Yazıyla logo arasında boşluk */
+    margin-right: 5px; /* Yazıyla logo arasında boşluk */
 }
 
 .navbar ul {
@@ -50,11 +50,11 @@ body {
 /* Hero Section */
 .hero {
     text-align: center;
-    background-image: url('../images/logo.jpeg');
+    background-image: url('../images/arkaplan2.jpeg');
     background-size: cover;
     background-position: center;
     padding: 100px 20px;
-    color: red;
+    color: white;
     height: 80vh;
 }
 
