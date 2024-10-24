@@ -1,4 +1,4 @@
-/* Genel ayarlar */
+/* General Settings */
 * {
     margin: 0;
     padding: 0;
@@ -20,7 +20,7 @@ body {
     color: white;
 }
 
-/* Logo ve Animasyon */
+/* Logo with Animation */
 .logo-container {
     display: flex;
     align-items: center;
@@ -29,10 +29,10 @@ body {
 }
 
 .logo-container:hover {
-    transform: scale(1.1) rotate(5deg); /* Animasyon: Büyüme ve döndürme */
+    transform: scale(1.1) rotate(5deg);
 }
 
-/* Logo resmi */
+/* Logo Image */
 .logo-resim {
     width: 40px;
     height: 40px;
@@ -41,7 +41,7 @@ body {
     object-fit: cover;
 }
 
-/* Site adı */
+/* Site Name */
 .site-name {
     font-size: 24px;
     font-weight: bold;
@@ -49,16 +49,16 @@ body {
     align-items: center;
 }
 
-/* Renkli yazılar */
+/* Colorful Titles */
 .aracim {
-    color: #e67e22; /* Turuncu renk */
+    color: #e67e22;
 }
 
 .yanimda {
-    color: white; /* Beyaz renk */
+    color: white;
 }
 
-/* Linklerin Ortalanması Ama Biraz Sola Kaydırılması */
+/* Centering and Positioning Links */
 nav {
     flex-grow: 1;
     display: flex;
@@ -85,30 +85,28 @@ nav {
     color: #e67e22;
 }
 
-
 /* Hero Section */
-/* Hero Bölümü */
 .hero {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh; /* Yüksekliği artır */
-    background-color: #333; /* Arka plan karartması */
+    height: 90vh;
+    background-color: #333;
 }
 
-/* Pencere Çerçevesi */
+/* Window Frame */
 .window-frame {
-    width: 85%;  /* Genişlik artırıldı */
-    max-width: 1000px; /* En fazla 1000px olacak şekilde sınırlandır */
-    height: 500px; /* Yüksekliği artırıldı */
+    width: 85%;
+    max-width: 1000px;
+    height: 500px;
     overflow: hidden;
-    border-radius: 30px; /* Daha yuvarlak köşeler */
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); /* Daha belirgin gölge */
+    border-radius: 30px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
     position: relative;
-    animation: slideIn 1.5s ease-out; /* Animasyonu hızlandır */
+    animation: slideIn 1.5s ease-out;
 }
 
-/* İçerik: Görsel */
+/* Window Content */
 .window-content {
     width: 100%;
     height: 100%;
@@ -116,19 +114,19 @@ nav {
     animation: openWindow 2.5s ease forwards;
 }
 
-/* Görsel Ayarları */
+/* Hero Image */
 .hero-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 30px; /* Görsele daha yuvarlak köşeler */
+    border-radius: 30px;
 }
 
-/* Sayfa Yüklendiğinde Çerçeve Kaydırma Animasyonu */
+/* Slide-in Animation */
 @keyframes slideIn {
     from {
         opacity: 0;
-        transform: translateY(-70px); /* Daha belirgin hareket */
+        transform: translateY(-70px);
     }
     to {
         opacity: 1;
@@ -136,7 +134,7 @@ nav {
     }
 }
 
-/* Pencere Açılma Animasyonu */
+/* Open Window Animation */
 @keyframes openWindow {
     from {
         transform: translateY(-100%);
@@ -146,8 +144,7 @@ nav {
     }
 }
 
-
-/* Araç Listesi */
+/* Car List */
 .arac-listesi {
     padding: 50px;
     background-color: white;
@@ -171,23 +168,15 @@ nav {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
-    width: 300px; /* Kart genişliği */
+    width: 300px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: transform 0.3s; /* Hover efekti için geçiş */
+    transition: transform 0.3s;
 }
 
 .arac-card:hover {
-    transform: scale(1.05); /* Hover efektinde kartın büyümesi */
-}
-
-.arac-card h3 {
-    margin-bottom: 10px;
-}
-
-.arac-card p {
-    margin: 5px 0;
+    transform: scale(1.05);
 }
 
 .arac-card button {
@@ -205,7 +194,7 @@ nav {
     background-color: #d35400;
 }
 
-/* İletişim Bölümü */
+/* Contact Section */
 .iletisim {
     padding: 50px;
     background-color: white;
