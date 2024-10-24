@@ -63,7 +63,7 @@ nav {
     flex-grow: 1;
     display: flex;
     justify-content: flex-start;
-    padding-left: 250px;
+    padding-left: 300px;
     align-items: center;
 }
 
@@ -87,38 +87,65 @@ nav {
 
 
 /* Hero Section */
+/* Hero Bölümü */
 .hero {
-    text-align: center;
-    background-image: url('../images/arkaplan2.jpeg');
-    background-size: cover;
-    background-position: center;
-    padding: 100px 20px;
-    color: white;
-    height: 80vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    animation: fadeIn 1.5s;
+    align-items: center;
+    height: 90vh; /* Yüksekliği artır */
+    background-color: #333; /* Arka plan karartması */
 }
 
-@keyframes fadeIn {
+/* Pencere Çerçevesi */
+.window-frame {
+    width: 85%;  /* Genişlik artırıldı */
+    max-width: 1000px; /* En fazla 1000px olacak şekilde sınırlandır */
+    height: 500px; /* Yüksekliği artırıldı */
+    overflow: hidden;
+    border-radius: 30px; /* Daha yuvarlak köşeler */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); /* Daha belirgin gölge */
+    position: relative;
+    animation: slideIn 1.5s ease-out; /* Animasyonu hızlandır */
+}
+
+/* İçerik: Görsel */
+.window-content {
+    width: 100%;
+    height: 100%;
+    transform: translateY(-100%);
+    animation: openWindow 2.5s ease forwards;
+}
+
+/* Görsel Ayarları */
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 30px; /* Görsele daha yuvarlak köşeler */
+}
+
+/* Sayfa Yüklendiğinde Çerçeve Kaydırma Animasyonu */
+@keyframes slideIn {
     from {
         opacity: 0;
+        transform: translateY(-70px); /* Daha belirgin hareket */
     }
     to {
         opacity: 1;
+        transform: translateY(0);
     }
 }
 
-.hero h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
+/* Pencere Açılma Animasyonu */
+@keyframes openWindow {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
 }
 
-.hero p {
-    font-size: 20px;
-    margin-bottom: 30px;
-}
 
 /* Araç Listesi */
 .arac-listesi {
@@ -144,16 +171,15 @@ nav {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
-    width: 300px;
+    width: 300px; /* Kart genişliği */
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s; /* Hover efekti için geçiş */
 }
 
 .arac-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05); /* Hover efektinde kartın büyümesi */
 }
 
 .arac-card h3 {
