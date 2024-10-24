@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Araç Kiralama Filtreleme</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        table {
+            width: 25%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        td {
+            width: 50%; /* Sağ kısma genişlik verdik */
+        }
+        label {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Filtrele</h1>
+
+    <table>
+        <tr>
+            <th style="width: 30%;">Vites Tipi</th>
+            <th>Seçenekler</th>
+        </tr>
+        <tr>
+            <td>Manuel</td>
+            <td><input type="checkbox" id="manual"></td>
+        </tr>
+        <tr>
+            <td>Otomatik</td>
+            <td><input type="checkbox" id="automatic"></td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <th style="width: 30%;">Yakıt Tipi</th>
+            <th>Seçenekler</th>
+        </tr>
+        <tr>
+            <td>Benzin</td>
+            <td><input type="checkbox" id="petrol"></td>
+        </tr>
+        <tr>
+            <td>Dizel</td>
+            <td><input type="checkbox" id="diesel"></td>
+        </tr>
+        <tr>
+            <td>LPG</td>
+            <td><input type="checkbox" id="lpg"></td>
+        </tr>
+        <tr>
+            <td>Elektrik</td>
+            <td><input type="checkbox" id="electric"></td>
+        </tr>
+        <tr>
+            <td>Hybrid</td>
+            <td><input type="checkbox" id="hybrid"></td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <th style="width: 30%;">Fiyat Aralığı</th>
+            <th>Seçenekler</th>
+        </tr>
+        <tr>
+            <td>TRY 1500-2500</td>
+            <td><input type="checkbox" id="range1"></td>
+        </tr>
+        <tr>
+            <td>TRY 2500-3500</td>
+            <td><input type="checkbox" id="range2"></td>
+        </tr>
+        <tr>
+            <td>TRY 3500-5000</td>
+            <td><input type="checkbox" id="range3"></td>
+        </tr>
+        <tr>
+            <td>TRY 5000+</td>
+            <td><input type="checkbox" id="range4"></td>
+        </tr>
+    </table>
+
+    <label for="">Araç Markası/Modeli</label>
+    <input type="text" placeholder="Araç markası/modeli girin..." />
+
+</body>
+</html>
