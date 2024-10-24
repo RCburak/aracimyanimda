@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Araç Kiralama - Anasayfa</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">Araç<span>Kiralama</span></div>
+        <img src="../images/logo.jpeg" alt="Site Logosu" class="logo-resim">
+        <nav>
+            <ul>
+                <li><a href="#">Anasayfa</a></li>
+                <li><a href="#">Araçlar</a></li>
+                <li><a href="#">Rezervasyon</a></li>
+                <li><a href="#">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Hayalindeki Aracı Kirala!</h1>
+        <p>Geniş araç yelpazemizle, dilediğiniz aracı hemen kiralayın.</p>
+        <button onclick="window.location.href='#araclar'">Araçları Gör</button>
+    </section>
+
+    <!-- Araç Listesi -->
+    <section id="araclar" class="arac-listesi">
+        <h2>Mevcut Araçlarımız</h2>
+        <div id="araclar-container" class="arac-container">
+            <!-- Araçlar buraya yüklenecek -->
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
