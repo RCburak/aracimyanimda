@@ -18,34 +18,52 @@
         </div>
         <nav>
             <ul class="centered-links">
-                <li><a href="#">Anasayfa</a></li>
-                <li><a href="#">Araçlar</a></li>
-                <li><a href="#">İletişim</a></li>
+                <li><a href="#anasayfa">Anasayfa</a></li>
+                <li><a href="#araclar">Araçlar</a></li>
+                <li><a href="#iletisim">İletişim</a></li>
             </ul>
         </nav>
     </header>
     
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Hayalindeki Aracı Kirala!</h1>
-        <p>Geniş araç yelpazemizle, dilediğiniz aracı hemen kiralayın.</p>
-    </section>
-
-    <!-- Araç Listesi -->
-    <section id="araclar" class="arac-listesi">
-        <h2>Mevcut Araçlarımız</h2>
-        <div id="araclar-container" class="arac-container">
-            <!-- Araçlar buraya yüklenecek -->
+    <!-- Hero Bölümü -->
+    <section id="anasayfa" class="hero">
+        <div class="window-frame">
+            <div class="window-content">
+                <img src="../images/arkaplan2.jpeg" alt="Araç Kiralama" class="hero-image">
+            </div>
         </div>
     </section>
+    
+    <!-- Araç Listesi -->
+<section id="araclar" class="arac-listesi">
+    <h2>Mevcut Araçlarımız</h2>
+    <div id="araclar-container" class="arac-container">
+        <div class="arac-card">
+            <h3>Marka 1 Model 1</h3>
+            <p>Yıl: 2020</p>
+            <p>Kiralık: Evet</p>
+            <button>Rezervasyon Yap</button>
+        </div>
+        <div class="arac-card">
+            <h3>Marka 2 Model 2</h3>
+            <p>Yıl: 2021</p>
+            <p>Kiralık: Hayır</p>
+            <button>Rezervasyon Yap</button>
+        </div>
+        <div class="arac-card">
+            <h3>Marka 3 Model 3</h3>
+            <p>Yıl: 2022</p>
+            <p>Kiralık: Evet</p>
+            <button>Rezervasyon Yap</button>
+        </div>
+        <!-- Daha fazla araç kartı ekleyebilirsiniz -->
+    </div>
+</section>
 
+    
     <!-- İletişim Bölümü -->
     <section id="iletisim" class="iletisim">
         <h2>İletişim</h2>
         <p>Bize ulaşmak için formu doldurun.</p>
     </section>
-
-    <script src="script.js"></script>
-</body>
-</html>
+    

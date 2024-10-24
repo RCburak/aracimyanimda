@@ -1,7 +1,7 @@
 // API'den araçları getir ve sayfada göster
 async function araclariGetir() {
     try {
-        const response = await fetch('http://localhost:3000/araclar');
+        const response = await fetch('http://localhost:3000/araclar'); // API endpoint'inizi güncelleyin
         const araclar = await response.json();
         const container = document.getElementById('araclar-container');
         container.innerHTML = '';
@@ -23,6 +23,9 @@ async function araclariGetir() {
         console.error('Araçlar yüklenirken bir hata oluştu:', error);
     }
 }
+
+// Sayfa yüklendiğinde araçları getir
+document.addEventListener('DOMContentLoaded', araclariGetir);
 
 // Sayfa yüklendiğinde araçları getir
 document.addEventListener('DOMContentLoaded', araclariGetir);
