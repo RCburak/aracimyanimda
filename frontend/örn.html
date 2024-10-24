@@ -10,9 +10,10 @@
             margin: 20px;
             background-color: #f4f4f4;
             color: #333;
+            width: 20%;
         }
         table {
-            width: 25%;
+            width: 100%; /* Full width for better responsiveness */
             border-collapse: collapse;
             margin-bottom: 20px;
             background: #fff;
@@ -37,70 +38,20 @@
             margin-top: 10px;
         }
         .price-range input {
-            width: 80px;
+            width: 80px; /* Fixed width for price inputs */
             padding: 5px;
             margin-right: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
         .price-range label {
-            margin: 0 10px 0 0;
-        }
-        button {
-            padding: 10px 15px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 20px;
-            margin-right: 10px; /* Add space between buttons */
-        }
-        button:hover {
-            background-color: #2980b9;
+            margin: 0 10px 0 0; /* Spacing adjustments */
         }
     </style>
 </head>
 <body>
 
     <h1>Filter</h1>
-
-    <table>
-        <tr>
-            <th>Categories</th>
-            <th>Choice</th>
-        </tr>
-        <tr>
-            <td>Compact Car</td>
-            <td><input type="checkbox" id="compact"></td> 
-        </tr>
-
-        <tr>
-            <td>Sedan</td>
-            <td><input type="checkbox" id="sedan"></td>
-        </tr>
-
-        <tr>
-            <td>SUV</td>
-            <td><input type="checkbox" id="suv"></td>
-        </tr>
-
-        <tr>
-            <td>Electric Car</td>
-            <td><input type="checkbox" id="electricCar"></td>
-        </tr>
-           
-        <tr>
-            <td>Sports Car</td>
-            <td><input type="checkbox" id="sports"></td>
-        </tr>
-
-        <tr>
-            <td>Luxury Car</td>
-            <td><input type="checkbox" id="luxury"></td>
-        </tr>
-    </table>
 
     <table>
         <tr>
@@ -130,7 +81,10 @@
             <td>Diesel</td>
             <td><input type="checkbox" id="diesel"></td>
         </tr>
-        
+        <tr>
+            <td>LPG</td>
+            <td><input type="checkbox" id="lpg"></td>
+        </tr>
         <tr>
             <td>Electric</td>
             <td><input type="checkbox" id="electric"></td>
@@ -149,39 +103,14 @@
         <label for="maxPrice">Max:</label>
         <input type="number" id="maxPrice" placeholder="10000">
     </div>
-
-    <button onclick="resetResult()">Reset</button>
-
-    <button onclick="filterResults()">Filter</button>
-
+    <br>
+    <label for="">Araç Marka/Modeli</label>
+    <input type="text" name="" id=""
+    placeholder="Araç marka modelini girin...">
     
-    
-    
-    
-    <script>
-        function filterResults() {
-            // Get filter values
-            const minPrice = document.getElementById('minPrice').value;
-            const maxPrice = document.getElementById('maxPrice').value;
-            const manualChecked = document.getElementById('manual').checked;
-            const autoChecked = document.getElementById('auto').checked;
+    <br><br>
 
-            // Here you would typically handle the filter logic, e.g., send data to a server
-
-            // For demonstration, just show an alert
-            alert(`Filtering results:\nMin Price: ${minPrice}\nMax Price: ${maxPrice}\nManual: ${manualChecked}\nAuto: ${autoChecked}`);
-        }
-
-        function resetResult() {
-            // Clear all checkboxes
-            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-                checkbox.checked = false;
-            });
-            // Reset price inputs
-            document.getElementById('minPrice').value = '';
-            document.getElementById('maxPrice').value = '';
-        }
-    </script>
-
+<input type="reset" name="" id="">
+<input type="text" name="" id="">
 </body>
 </html>
