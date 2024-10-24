@@ -5,27 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Araç Kiralama - Anasayfa</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navbar -->
     <header class="navbar">
-        <div class="logo">Araç<span>Kiralama</span></div>
-        <img src="../images/logo.jpeg" alt="Site Logosu" class="logo-resim">
+        <div class="logo-container">
+            <img src="../images/logo.jpeg" alt="Site Logosu" class="logo-resim">
+            <div class="site-name">
+                <span class="aracim">Aracım</span><span class="yanimda">Yanımda</span>
+            </div>
+        </div>
         <nav>
-            <ul>
+            <ul class="centered-links">
                 <li><a href="#">Anasayfa</a></li>
                 <li><a href="#">Araçlar</a></li>
-                <li><a href="#">Rezervasyon</a></li>
                 <li><a href="#">İletişim</a></li>
             </ul>
         </nav>
     </header>
+    
 
     <!-- Hero Section -->
     <section class="hero">
         <h1>Hayalindeki Aracı Kirala!</h1>
         <p>Geniş araç yelpazemizle, dilediğiniz aracı hemen kiralayın.</p>
-        <button onclick="window.location.href='#araclar'">Araçları Gör</button>
     </section>
 
     <!-- Araç Listesi -->
@@ -34,6 +38,12 @@
         <div id="araclar-container" class="arac-container">
             <!-- Araçlar buraya yüklenecek -->
         </div>
+    </section>
+
+    <!-- İletişim Bölümü -->
+    <section id="iletisim" class="iletisim">
+        <h2>İletişim</h2>
+        <p>Bize ulaşmak için formu doldurun.</p>
     </section>
 
     <script src="script.js"></script>
