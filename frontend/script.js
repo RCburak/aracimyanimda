@@ -26,6 +26,3 @@ async function araclariGetir() {
 
 // Sayfa yüklendiğinde araçları getir
 document.addEventListener('DOMContentLoaded', araclariGetir);
-
-// Sayfa yüklendiğinde araçları getir
-document.addEventListener('DOMContentLoaded', araclariGetir);
