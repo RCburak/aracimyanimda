@@ -26,3 +26,8 @@ async function araclariGetir() {
 
 // Sayfa yüklendiğinde araçları getir
 document.addEventListener('DOMContentLoaded', araclariGetir);
+
+// Login butonuna tıklanınca başka bir sayfaya yönlendir
+document.getElementById('loginButton').addEventListener('click', function () {
+    window.location.href = 'login.html'; // Yönlendirilecek sayfa
+});
