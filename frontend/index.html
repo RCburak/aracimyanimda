@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Rental - Home</title>
+    <title>AracımYanımda - Home</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -23,17 +23,26 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
-    </header>
-    
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="window-frame">
-            <div class="window-content">
-                <img src="images/arkaplan2.jpeg" alt="Car Rental" class="hero-image">
-            </div>
+        <!-- Login Button -->
+        <div class="login-container">
+            <button class="login-button" id="loginButton">Login / Sign Up</button>
         </div>
+    </header>
+
+    <!-- Slider Section -->
+    <section id="home" class="slider">
+        <div class="slide active">
+            <img src="images/arkaplan2.jpeg" alt="Car Rental 1">
+        </div>
+        <div class="slide">
+            <img src="images/logo.jpeg" alt="Logo">
+        </div>
+
+        <!-- Slider Controls -->
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
     </section>
-    
+
     <!-- Car List Section -->
     <section id="cars" class="arac-listesi">
         <h2>Our Available Cars</h2>
@@ -48,7 +57,7 @@
                 <h3>Brand 2 Model 2</h3>
                 <p>Year: 2020</p>
                 <p>Available: No</p>
-                <button>Book Now</button>
+                <button disabled>Not Available</button>
             </div>
             <div class="arac-card">
                 <h3>Brand 3 Model 3</h3>
@@ -62,7 +71,7 @@
     <!-- Contact Section -->
     <section id="contact" class="iletisim">
         <h2>Contact Us</h2>
-        <p>Fill out the form to reach us.</p>
+        <p>If you have any questions or inquiries, please fill out the contact form below.</p>
     </section>
 
     <script src="script.js"></script>
