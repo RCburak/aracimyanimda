@@ -85,6 +85,27 @@ nav {
     color: #e67e22;
 }
 
+/* Login Butonu */
+.login-container {
+    position: absolute;
+    right: 30px;
+}
+
+.login-button {
+    background-color: orange;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #d35400;
+}
+
 /* Hero Section */
 .hero {
     display: flex;
