@@ -18,6 +18,7 @@ body {
     background-color: #333;
     padding: 15px 30px;
     color: white;
+    position: relative;
 }
 
 /* Logo with Animation */
@@ -58,7 +59,7 @@ body {
     color: white;
 }
 
-/* Centering and Positioning Links */
+/* Centering Links */
 nav {
     flex-grow: 1;
     display: flex;
@@ -85,7 +86,7 @@ nav {
     color: #e67e22;
 }
 
-/* Login Butonu */
+/* Login Button */
 .login-container {
     position: absolute;
     right: 30px;
@@ -106,66 +107,62 @@ nav {
     background-color: #d35400;
 }
 
-/* Hero Section */
-.hero {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 90vh;
-    background-color: #333;
-}
-
-/* Window Frame */
-.window-frame {
+/* Slider Section */
+.slider {
+    position: relative;
     width: 85%;
     max-width: 1000px;
-    height: 500px;
+    margin: 40px auto;
     overflow: hidden;
     border-radius: 30px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-    position: relative;
-    animation: slideIn 1.5s ease-out;
 }
 
-/* Window Content */
-.window-content {
+.slide {
+    display: none;
     width: 100%;
-    height: 100%;
-    transform: translateY(-100%);
-    animation: openWindow 2.5s ease forwards;
+    height: 500px;
 }
 
-/* Hero Image */
-.hero-image {
+.slide.active {
+    display: block;
+}
+
+.slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     border-radius: 30px;
 }
 
-/* Slide-in Animation */
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-70px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Slider Controls */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
 }
 
-/* Open Window Animation */
-@keyframes openWindow {
-    from {
-        transform: translateY(-100%);
-    }
-    to {
-        transform: translateY(0);
-    }
+.prev {
+    left: 10px;
 }
 
-/* Car List */
+.next {
+    right: 10px;
+}
+
+.prev:hover, .next:hover {
+    background-color: #e67e22;
+}
+
+/* Car List Section */
 .arac-listesi {
     padding: 50px;
     background-color: white;
@@ -200,6 +197,16 @@ nav {
     transform: scale(1.05);
 }
 
+.arac-card h3 {
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.arac-card p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
 .arac-card button {
     margin-top: 10px;
     background-color: #e67e22;
@@ -211,7 +218,12 @@ nav {
     transition: background-color 0.3s;
 }
 
-.arac-card button:hover {
+.arac-card button:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+}
+
+.arac-card button:hover:not(:disabled) {
     background-color: #d35400;
 }
 
@@ -226,4 +238,9 @@ nav {
     margin-bottom: 20px;
     font-size: 36px;
     color: #333;
+}
+
+.iletisim p {
+    font-size: 18px;
+    color: #555;
 }
