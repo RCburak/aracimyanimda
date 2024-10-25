@@ -58,3 +58,12 @@ prevButton.addEventListener('click', prevSlide);
 
 // Automatically change slides every 5 seconds
 setInterval(nextSlide, 5000);
+
+// Dark Mode Toggle
+const darkModeToggle = document.getElementById('darkModeToggle');
+const body = document.body;
+
+darkModeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode'); // Gece modunu aktif/pasif yapar.
+    darkModeToggle.classList.toggle('active'); // Animasyonu tetikler.
+});
