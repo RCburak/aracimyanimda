@@ -10,12 +10,19 @@ async function araclariGetir() {
             const card = document.createElement('div');
             card.classList.add('arac-card');
 
+            // Araç bilgilerini içeren HTML
             card.innerHTML = `
                 <h3>${arac.marka} ${arac.model}</h3>
                 <p>Yıl: ${arac.yil}</p>
                 <p>Kiralık: ${arac.kiralik ? 'Evet' : 'Hayır'}</p>
-                <button>Rezervasyon Yap</button>
+                <button class="rezervasyon-button">Rezervasyon Yap</button>
             `;
+
+            // Butona tıklanınca yönlendirme yap
+            const rezervasyonButton = card.querySelector('.rezervasyon-button');
+            rezervasyonButton.addEventListener('click', () => {
+                window.location.href = 'arac.html'; // Yönlendirme
+            });
 
             container.appendChild(card);
         });
@@ -58,3 +65,12 @@ prevButton.addEventListener('click', prevSlide);
 
 // Automatically change slides every 5 seconds
 setInterval(nextSlide, 5000);
+
+// Dark Mode Toggle
+const darkModeToggle = document.getElementById('darkModeToggle');
+const body = document.body;
+
+darkModeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode'); // Gece modunu aktif/pasif yapar.
+    darkModeToggle.classList.toggle('active'); // Animasyonu tetikler.
+});
