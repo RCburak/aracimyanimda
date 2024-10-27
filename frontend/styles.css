@@ -8,7 +8,6 @@
 
 body {
     background-color: #f4f4f4;
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Navbar */
@@ -20,7 +19,6 @@ body {
     padding: 15px 30px;
     color: white;
     position: relative;
-    transition: background-color 0.3s ease;
 }
 
 /* Logo without Animation */
@@ -28,6 +26,7 @@ body {
     display: flex;
     align-items: center;
     cursor: pointer;
+    /* Removed animation */
 }
 
 /* Logo Image */
@@ -44,14 +43,14 @@ body {
     font-weight: bold;
     display: flex;
     align-items: center;
-    opacity: 0;
-    animation: fadeIn 1s forwards;
+    opacity: 0; /* Initially hidden */
+    animation: fadeIn 1s forwards; /* Fade in animation */
 }
 
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(-20px); /* Slide down effect */
     }
     to {
         opacity: 1;
@@ -69,13 +68,14 @@ body {
 }
 
 @keyframes colorChange {
-    0% { color: #e67e22; }
-    50% { color: #fff; }
-    100% { color: #e67e22; }
+    0% { color: #e67e22; } /* Initial color */
+    50% { color: #fff; }   /* Middle color */
+    100% { color: #e67e22; } /* Final color */
 }
 
+/* Site Name Animation */
 .site-name {
-    animation: fadeIn 1s forwards, colorChange 3s infinite;
+    animation: fadeIn 1s forwards, colorChange 3s infinite; /* Retaining color change animation */
 }
 
 /* Centering Links */
@@ -245,84 +245,70 @@ nav {
 .arac-card button:hover:not(:disabled) {
     background-color: #d35400;
 }
-/* Araç kartları için stil */
-.arac-container {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    overflow: hidden;
-}
-
-/* Araç kartları */
-.arac-card {
-    min-width: 300px;
-    margin: 10px;
-    flex-shrink: 0;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
 
 /* Contact Section */
 .iletisim {
     padding: 50px;
-    background-color: black;
-    color: white;
+    background-color: black; /* Black background */
+    color: white; /* White text */
     text-align: center;
-    width: 80%;
-    margin: 50px auto;
-    border-radius: 20px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    width: 80%; /* 80% width */
+    margin: 50px auto; /* Center alignment */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Subtle shadow */
 }
 
 /* Contact Info */
 .contact-info {
     display: flex;
-    justify-content: space-around;
-    margin: 30px 0;
+    justify-content: space-around; /* Even spacing */
+    margin: 30px 0; /* Vertical margin */
 }
 
 .info-item {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    border-radius: 10px; /* Rounded corners */
     padding: 20px;
-    flex: 1;
-    margin: 0 10px;
-    transition: transform 0.3s;
+    flex: 1; /* Equal width */
+    margin: 0 10px; /* Horizontal margin */
+    transition: transform 0.3s; /* Hover effect transition */
 }
 
 .info-item:hover {
-    transform: scale(1.05);
+    transform: scale(1.05); /* Hover scaling */
 }
 
 .icon {
-    font-size: 40px;
+    font-size: 40px; /* Icon size */
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 10px; /* Space between icon and title */
 }
 
 /* Social Media */
 .social-media {
-    margin: 30px 0;
+    margin: 30px 0; /* Vertical margin */
 }
 
 .social-media a {
-    color: #e67e22;
-    text-decoration: none;
-    margin: 0 10px;
+    color: #e67e22; /* Attention-grabbing color */
+    text-decoration: none; /* No underline */
+    margin: 0 10px; /* Horizontal margin */
 }
 
 .social-media a:hover {
-    text-decoration: underline;
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Office Hours */
+h3 {
+    margin: 20px 0 10px; /* Margin for headings */
 }
 
 /* Login Container: Alignment and Spacing */
 .login-container {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 30px; /* Space between login and dark mode button */
 }
 
 /* Dark Mode Toggle Button */
@@ -349,6 +335,7 @@ nav {
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+/* Icon Positions */
 .sun-icon {
     left: 5px;
     opacity: 1;
@@ -357,7 +344,7 @@ nav {
 .moon-icon {
     right: 5px;
     opacity: 0;
-    transform: translateX(10px);
+    transform: translateX(10px); /* Initially hidden */
 }
 
 /* Active State: Background Change and Icon Transition */
@@ -367,12 +354,12 @@ nav {
 
 .dark-mode-toggle.active .sun-icon {
     opacity: 0;
-    transform: translateX(-10px);
+    transform: translateX(-10px); /* Sun hides */
 }
 
 .dark-mode-toggle.active .moon-icon {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(0); /* Moon appears */
 }
 
 /* Dark Mode Styles */
