@@ -3,38 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Araç Kiralama - Anasayfa</title>
+    <title>AracımYanımda - Home</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navbar -->
     <header class="navbar">
-        <div class="logo">Araç<span>Kiralama</span></div>
-        <img src="../images/logo.jpeg" alt="Site Logosu" class="logo-resim">
+        <div class="logo-container">
+            <img src="images/logo.jpeg" alt="Site Logo" class="logo-resim">
+            <div class="site-name">
+                <span class="aracim">Aracım</span><span class="yanimda">Yanımda</span>
+            </div>
+        </div>
         <nav>
-            <ul>
-                <li><a href="#">Anasayfa</a></li>
-                <li><a href="#">Araçlar</a></li>
-                <li><a href="#">Rezervasyon</a></li>
-                <li><a href="#">İletişim</a></li>
+            <ul class="centered-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#cars">Cars</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="arac.html">Reservation</a></li>
             </ul>
         </nav>
+        <!-- Login and Dark Mode Buttons -->
+        <div class="login-container">
+            <button class="dark-mode-toggle" id="darkModeToggle">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+            <button class="login-button" id="loginButton">Login / Sign Up</button>
+        </div>
+        
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Hayalindeki Aracı Kirala!</h1>
-        <p>Geniş araç yelpazemizle, dilediğiniz aracı hemen kiralayın.</p>
-        <button onclick="window.location.href='#araclar'">Araçları Gör</button>
+    <!-- Slider Section -->
+    <section id="home" class="slider">
+        <div class="slide active">
+            <img src="images/arkaplan2.jpg" alt="Car Rental 1">
+        </div>
+        <div class="slide">
+            <img src="images/arkaplan3.jpg" alt="Logo">
+        </div>
+
+        <!-- Slider Controls -->
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
     </section>
 
-    <!-- Araç Listesi -->
-    <section id="araclar" class="arac-listesi">
-        <h2>Mevcut Araçlarımız</h2>
+    <!-- Car List Section -->
+    <section id="cars" class="arac-listesi">
+        <h2>Our Available Cars</h2>
         <div id="araclar-container" class="arac-container">
-            <!-- Araçlar buraya yüklenecek -->
+            <div class="arac-card">
+                <h3>Brand 1 Model 1</h3>
+                <p>Year: 2020</p>
+                <p>Available: Yes</p>
+                <button>Book Now</button>
+            </div>
+            <div class="arac-card">
+                <h3>Brand 2 Model 2</h3>
+                <p>Year: 2020</p>
+                <p>Available: No</p>
+                <button disabled>Not Available</button>
+            </div>
+            <div class="arac-card">
+                <h3>Brand 3 Model 3</h3>
+                <p>Year: 2022</p>
+                <p>Available: Yes</p>
+                <button>Book Now</button>
+            </div>
         </div>
     </section>
+
+    <!-- Contact Section -->
+<section id="contact" class="iletisim">
+    <h2>Contact Us</h2>
+    <p>Your feedback is important to us! If you have any questions, suggestions, or need assistance, please reach out.</p>
+    
+    <div class="contact-info">
+        <div class="info-item">
+            <span class="icon">📞</span>
+            <div>
+                <h3>Phone</h3>
+                <p><strong>+90 (551) 554-7538</strong></p>
+            </div>
+        </div>
+        
+        <div class="info-item">
+            <span class="icon">✉️</span>
+            <div>
+                <h3>Email</h3>
+                <p><strong>supportaracimyanimda@gmail.com</strong></p>
+            </div>
+        </div>
+        
+        <div class="info-item">
+            <span class="icon">🏢</span>
+            <div>
+                <h3>Visit Us</h3>
+                <p>Türkiye/İstanbul<br>Beykoz Üniversitesi</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="social-media">
+        <h3>Follow Us</h3>
+        <p>Stay connected on social media:</p>
+        <p>
+            <a href="https://instagram.com/burakkaya.57" target="_blank">Instagram</a> |
+            <a href="https://facebook.com/aracimyanimda" target="_blank">Facebook</a> |
+            <a href="https://twitter.com/aracimyanimda" target="_blank">Twitter</a>
+        </p>
+    </div>
+</section>
+
 
     <script src="script.js"></script>
 </body>
