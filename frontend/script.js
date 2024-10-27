@@ -1,76 +1,72 @@
-// API'den araçları getir ve sayfada göster
-async function araclariGetir() {
-    try {
-        const response = await fetch('http://localhost:3000/araclar'); // API endpoint'inizi güncelleyin
-        const araclar = await response.json();
-        const container = document.getElementById('araclar-container');
-        container.innerHTML = '';
+let currentIndex = 0; // Başlangıç indexi
 
+async function araclariGetir() {
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '67f650a4demsh36d2d7835aa2d11p13cd10jsn791958a28200', // API anahtarınız
+            'X-RapidAPI-Host': 'cars-by-api-ninjas.p.rapidapi.com'
+        }
+    };
+
+    try {
+        const response = await fetch('https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?limit=5', options);
+if (!response.ok) {
+    throw new Error(`HTTP Hatası: ${response.status} ${response.statusText}`);
+}
+const araclar = await response.json();
+
+        const container = document.getElementById('araclar-container');
+        container.innerHTML = ''; // Eski içeriği temizle
+
+        // Gelen verileri kartlara dönüştür ve ekle
         araclar.forEach(arac => {
             const card = document.createElement('div');
             card.classList.add('arac-card');
-
-            // Araç bilgilerini içeren HTML
             card.innerHTML = `
-                <h3>${arac.marka} ${arac.model}</h3>
-                <p>Yıl: ${arac.yil}</p>
-                <p>Kiralık: ${arac.kiralik ? 'Evet' : 'Hayır'}</p>
-                <button class="rezervasyon-button">Rezervasyon Yap</button>
+                <h3>${arac.make} ${arac.model}</h3>
+                <p>Year: ${arac.year}</p>
+                <p>Transmission: ${arac.transmission}</p>
+                <button class="rezervasyon-button">Book Now</button>
             `;
 
-            // Butona tıklanınca yönlendirme yap
-            const rezervasyonButton = card.querySelector('.rezervasyon-button');
-            rezervasyonButton.addEventListener('click', () => {
-                window.location.href = 'arac.html'; // Yönlendirme
+            // Rezervasyon sayfasına yönlendirme
+            card.querySelector('.rezervasyon-button').addEventListener('click', () => {
+                window.location.href = 'arac.html';
             });
 
             container.appendChild(card);
         });
     } catch (error) {
-        console.error('Araçlar yüklenirken bir hata oluştu:', error);
+        console.error('Araçlar yüklenirken hata oluştu:', error);
     }
 }
 
-// Sayfa yüklendiğinde araçları getir
-document.addEventListener('DOMContentLoaded', araclariGetir);
+// Kaydırma fonksiyonları
+function slideNext() {
+    const container = document.getElementById('araclar-container');
+    const totalCards = container.children.length;
+    if (totalCards === 0) return;
 
-// Login butonuna tıklanınca başka bir sayfaya yönlendir
-document.getElementById('loginButton').addEventListener('click', function () {
-    window.location.href = 'login.html'; // Yönlendirilecek sayfa
-});
-
-const slides = document.querySelectorAll('.slide');
-const prevButton = document.querySelector('.prev');
-const nextButton = document.querySelector('.next');
-let currentSlide = 0;
-
-function showSlide(index) {
-    slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-    });
+    currentIndex = (currentIndex + 1) % totalCards;
+    container.style.transform = `translateX(-${currentIndex * 310}px)`;
 }
 
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
+function slidePrev() {
+    const container = document.getElementById('araclar-container');
+    const totalCards = container.children.length;
+    if (totalCards === 0) return;
+
+    currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+    container.style.transform = `translateX(-${currentIndex * 310}px)`;
 }
 
-function prevSlide() {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
-}
+// Olay dinleyicileri
+document.querySelector('.right-scroll').addEventListener('click', slideNext);
+document.querySelector('.left-scroll').addEventListener('click', slidePrev);
 
-nextButton.addEventListener('click', nextSlide);
-prevButton.addEventListener('click', prevSlide);
-
-// Automatically change slides every 5 seconds
-setInterval(nextSlide, 5000);
-
-// Dark Mode Toggle
-const darkModeToggle = document.getElementById('darkModeToggle');
-const body = document.body;
-
-darkModeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode'); // Gece modunu aktif/pasif yapar.
-    darkModeToggle.classList.toggle('active'); // Animasyonu tetikler.
+// Sayfa yüklendiğinde araçları getir ve otomatik kaydırma başlat
+document.addEventListener('DOMContentLoaded', async () => {
+    await araclariGetir();
+    setInterval(slideNext, 5000); // Her 5 saniyede bir otomatik kaydır
 });
