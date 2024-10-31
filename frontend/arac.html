@@ -3,185 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Araçlar</title>
+    <title>Araç Markaları</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
             background-color: #f4f4f4;
-            color: #333;
+        }
+        h1 {
+            text-align: center;
         }
         table {
-            width: 20%;
+            width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
         }
         th, td {
-            padding: 10px;
+            border: 1px solid #ddd;
+            padding: 8px;
             text-align: left;
-            border-bottom: 1px solid #ddd;
         }
         th {
-            background-color: #3498db;
-            color: white;
+            background-color: #f2f2f2;
         }
-        label {
-            margin-left: 10px;
+        tr:hover {
+            background-color: #f5f5f5;
         }
-        .price-range {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
+        .form-container {
+            text-align: center;
+            margin-bottom: 20px;
         }
-        .price-range input {
-            width: 80px;
-            padding: 5px;
-            margin-right: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .price-range label {
-            margin: 0 10px 0 0;
-        }
-        button {
-            padding: 10px 15px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
+        #vehicle-info {
             margin-top: 20px;
-            margin-right: 10px; /* Add space between buttons */
-        }
-        button:hover {
-            background-color: #2980b9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            display: none; /* Başlangıçta gizle */
         }
     </style>
 </head>
 <body>
 
-    <h1>Filter</h1>
+    <h1>Araç Markaları</h1>
 
-    <table>
-        <tr>
-            <th>Categories</th>
-            <th>Choice</th>
-        </tr>
-        <tr>
-            <td>Compact Car</td>
-            <td><input type="checkbox" id="compact"></td> 
-        </tr>
-
-        <tr>
-            <td>Sedan</td>
-            <td><input type="checkbox" id="sedan"></td>
-        </tr>
-
-        <tr>
-            <td>SUV</td>
-            <td><input type="checkbox" id="suv"></td>
-        </tr>
-
-        <tr>
-            <td>Electric Car</td>
-            <td><input type="checkbox" id="electricCar"></td>
-        </tr>
-           
-        <tr>
-            <td>Sports Car</td>
-            <td><input type="checkbox" id="sports"></td>
-        </tr>
-
-        <tr>
-            <td>Luxury Car</td>
-            <td><input type="checkbox" id="luxury"></td>
-        </tr>
-    </table>
-
-    <table>
-        <tr>
-            <th style="width: 30%;">Transmission</th>
-            <th>Choice</th>
-        </tr>
-        <tr>
-            <td>Manual</td>
-            <td><input type="checkbox" id="manual" name="geartype"></td>
-        </tr>
-        <tr>
-            <td>Auto</td>
-            <td><input type="checkbox" id="auto" name="geartype"></td>
-        </tr>
-    </table>
-
-    <table>
-        <tr>
-            <th style="width: 30%;">Fuel Type</th>
-            <th>Choice</th>
-        </tr>
-        <tr>
-            <td>Gasoline</td>
-            <td><input type="checkbox" id="petrol"></td>
-        </tr>
-        <tr>
-            <td>Diesel</td>
-            <td><input type="checkbox" id="diesel"></td>
-        </tr>
-        
-        <tr>
-            <td>Electric</td>
-            <td><input type="checkbox" id="electric"></td>
-        </tr>
-        <tr>
-            <td>Hybrid</td>
-            <td><input type="checkbox" id="hybrid"></td>
-        </tr>
-    </table>
-
-    <p><b>Price Range</b></p>
-    <div class="price-range">
-        <label for="minPrice">Min:</label>
-        <input type="number" id="minPrice" placeholder="0">
-        
-        <label for="maxPrice">Max:</label>
-        <input type="number" id="maxPrice" placeholder="10000">
+    <div class="form-container">
+        <button onclick="getMakes()">Araç Markalarını Getir</button>
     </div>
 
-    <button onclick="resetResult()">Reset</button>
+    <table id="marka-listesi">
+        <tr>
+            <th>Marka Adı</th>
+        </tr>
+    </table>
 
-    <button onclick="filterResults()">Filter</button>
+    <div id="vehicle-info">
+        <h2>Araç Detayları</h2>
+        <table id="arac-bilgileri">
+            <tr>
+                <th>Özellik</th>
+                <th>Değer</th>
+            </tr>
+        </table>
+    </div>
 
-    
-    
-    
-    
     <script>
-        function filterResults() {
-            // Get filter values
-            const minPrice = document.getElementById('minPrice').value;
-            const maxPrice = document.getElementById('maxPrice').value;
-            const manualChecked = document.getElementById('manual').checked;
-            const autoChecked = document.getElementById('auto').checked;
-
-            // Here you would typically handle the filter logic, e.g., send data to a server
-
-            // For demonstration, just show an alert
-            alert(`Filtering results:\nMin Price: ${minPrice}\nMax Price: ${maxPrice}\nManual: ${manualChecked}\nAuto: ${autoChecked}`);
+        // Araç markalarını al
+        function getMakes() {
+            fetch('/markalar')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const markaListesi = document.getElementById('marka-listesi');
+                    markaListesi.innerHTML = `<tr><th>Marka Adı</th></tr>`; // Başlıkları temizle ve ekle
+                    data.forEach(marka => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `<td onclick="getVehicleInfo('${marka.make_name}')">${marka.make_name}</td>`;
+                        markaListesi.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Markalar alınırken hata oluştu:', error));
         }
 
-        function resetResult() {
-            // Clear all checkboxes
-            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-                checkbox.checked = false;
-            });
-            // Reset price inputs
-            document.getElementById('minPrice').value = '';
-            document.getElementById('maxPrice').value = '';
+        // Seçilen aracın bilgilerini al
+        function getVehicleInfo(make) {
+            const table = document.getElementById('arac-bilgileri');
+            table.innerHTML = `<tr><th>Özellik</th><th>Değer</th></tr>`; // Önceki verileri temizle
+
+            fetch(`/arac/${make}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Araç bilgilerini tabloya ekle
+                    for (const [key, value] of Object.entries(data)) {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `<td>${key}</td><td>${value}</td>`;
+                        table.appendChild(row);
+                    }
+                    document.getElementById('vehicle-info').style.display = 'block'; // Bilgileri göster
+                })
+                .catch(error => console.error('Araç bilgileri alınırken hata oluştu:', error));
         }
     </script>
-
 </body>
 </html>
