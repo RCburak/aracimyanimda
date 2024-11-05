@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
 const app = express();
+const path = require('path');
 
 require('dotenv').config();
 
@@ -33,6 +34,15 @@ app.get('/araclar', (req, res) => {
     res.json(results);
   });
 });
+
+// Statik dosyaları sunmak için frontend klasörünü kullanıyoruz
+app.use(express.static(path.join(__dirname, '../frontend')));
+
+// Ana sayfa isteği için index.html döndürüyoruz
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend', 'index.html'));
+});
+
 
 // Sunucuyu başlat
 const PORT = 3000;
