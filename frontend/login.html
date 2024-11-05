@@ -1,60 +1,39 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giriş Yap / Kayıt Ol</title>
-    <link rel="stylesheet" href="login.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login / Sign Up Sayfası</title>
+  <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <div class="auth-container">
-        <div class="auth-card">
-            <div class="tab">
-                <button class="tablinks active" onclick="openTab(event, 'login')">Giriş Yap</button>
-                <button class="tablinks" onclick="openTab(event, 'signup')">Kayıt Ol</button>
-            </div>
+  <div class="container">
+    <div class="form-container">
+      <div class="form-toggle">
+        <button id="login-toggle" onclick="toggleForm('login')">Giriş Yap</button>
+        <button id="signup-toggle" onclick="toggleForm('signup')">Kayıt Ol</button>
+      </div>
 
-            <!-- Login Form -->
-            <div id="login" class="tabcontent active">
-                <h2>Giriş Yap</h2>
-                <form id="login-form">
-                    <div class="input-group">
-                        <label for="email">E-posta</label>
-                        <input type="email" id="email" placeholder="E-postanızı girin" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="password">Şifre</label>
-                        <input type="password" id="password" placeholder="Şifrenizi girin" required>
-                    </div>
-                    <button type="submit" class="auth-button">Giriş Yap</button>
-                </form>
-            </div>
+      <!-- Giriş Formu -->
+      <form id="login-form" class="form">
+        <h2>Giriş Yap</h2>
+        <input type="text" placeholder="E-posta" required>
+        <input type="password" placeholder="Şifre" required>
+        <button type="submit">Giriş Yap</button>
+      </form>
 
-            <!-- Signup Form -->
-            <div id="signup" class="tabcontent">
-                <h2>Kayıt Ol</h2>
-                <form id="signup-form">
-                    <div class="input-group">
-                        <label for="name">İsim</label>
-                        <input type="text" id="name" placeholder="İsminizi girin" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="email">E-posta</label>
-                        <input type="email" id="email-signup" placeholder="E-postanızı girin" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="password">Şifre</label>
-                        <input type="password" id="password-signup" placeholder="Şifrenizi girin" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="confirmPassword">Şifre Tekrar</label>
-                        <input type="password" id="confirmPassword" placeholder="Şifrenizi tekrar girin" required>
-                    </div>
-                    <button type="submit" class="auth-button">Kayıt Ol</button>
-                </form>
-            </div>
-        </div>
+      <!-- Kayıt Ol Formu -->
+      <form id="signup-form" class="form" style="display: none;">
+        <h2>Kayıt Ol</h2>
+        <input type="text" placeholder="Ad Soyad" required>
+        <input type="email" placeholder="E-posta" required>
+        <input type="password" placeholder="Şifre" required>
+        <input type="password" placeholder="Şifre Tekrar" required>
+        <button type="submit">Kayıt Ol</button>
+      </form>
     </div>
-    <script src="login.js"></script>
+  </div>
+
+  <script src="login.js"></script>
 </body>
 </html>

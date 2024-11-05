@@ -1,101 +1,82 @@
-/* Genel Ayarlar */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: linear-gradient(135deg, #4c83ff, #6f42c1);
-}
-
-/* Auth Container */
-.auth-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 20px;
-}
-
-/* Kart Stili */
-.auth-card {
-  background: #fff;
-  padding: 20px 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
-}
-
-.tab {
-  display: flex;
-  margin-bottom: 20px;
-}
-
-.tab button {
-  flex: 1;
-  padding: 10px;
-  cursor: pointer;
-  border: none;
-  background: #f1f1f1;
-  color: #333;
-  font-weight: bold;
-}
-
-.tab button.active {
-  background-color: #4c83ff;
-  color: #fff;
-  border-radius: 5px;
-}
-
-.tabcontent {
-  display: none;
-}
-
-.tabcontent.active {
-  display: block;
-}
-
-/* Form ve Giriş */
-.input-group {
-  margin-bottom: 15px;
-  text-align: left;
-}
-
-.input-group label {
-  font-size: 0.9em;
-  margin-bottom: 5px;
-  display: block;
-  color: #555;
-}
-
-.input-group input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  outline: none;
-}
-
-.auth-button {
-  background-color: #4c83ff;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-  margin-top: 10px;
-  font-weight: bold;
-}
-
-.auth-button:hover {
-  background-color: #3a6fd9;
-}
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f3f4f6;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form-toggle {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .form-toggle button {
+    width: 50%;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #e0e0e0;
+  }
+  
+  .form-toggle button.active {
+    background-color: #3b82f6;
+    color: #fff;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form input {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .form button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .form button:hover {
+    background-color: #2563eb;
+  }
+  
