@@ -233,7 +233,11 @@ placeholder="Ex:City, airport or address">
     <button onclick="resetResult()">Reset</button>
     <button onclick="filterResults()">Filter</button>
 
-    <div id="carList" class="car-list">
+    
+        <div id="carList" class="car-list">
+            <!-- Araçlar buraya dinamik olarak eklenecek -->
+          </div>
+          
 
 
     </div>
@@ -263,40 +267,43 @@ placeholder="Ex:City, airport or address">
             document.getElementById('dropoff-time').value = '';
         }
 
-        async function fetchCars() {
-        try {
-            const response = await fetch('/api/araclar');
-            const cars = await response.json();
-            displayCars(cars);
-        } catch (error) {
-            console.error('Araç verilerini alırken hata oluştu:', error);
-        }
-    }
+        // Araçları getirme işlevi
+async function fetchCars() {
+  try {
+    // /araclar endpoint'ine GET isteği yapıyoruz
+    const response = await fetch('http://localhost:3000/araclar');
+    const cars = await response.json();  // Gelen veriyi JSON olarak al
+    displayCars(cars);  // Gelen araçları sayfada göster
+  } catch (error) {
+    console.error('Araç verilerini alırken hata oluştu:', error);
+  }
+}
 
-    // Araç verilerini sayfada göster
-    function displayCars(cars) {
-        const carList = document.getElementById('carList');
-        carList.innerHTML = '';  // Önceki içerikleri temizle
+// Araç verilerini sayfada gösterme işlevi
+function displayCars(cars) {
+  const carList = document.getElementById('carList');
+  carList.innerHTML = '';  // Önceki içerikleri temizle
 
-        cars.forEach(car => {
-            const carItem = document.createElement('div');
-            carItem.classList.add('car-item');
-            carItem.innerHTML = `
-                <div class="details">
-                    <strong>Marka:</strong> ${car.marka} <br>
-                    <strong>Model:</strong> ${car.model} <br>
-                    <strong>Yıl:</strong> ${car.yil}
-                </div>
-                <div class="status ${car.kiralik ? '' : 'unavailable'}">
-                    ${car.kiralik ? 'Kiralık' : 'Kiralık Değil'}
-                </div>
-            `;
-            carList.appendChild(carItem);
-        });
-    }
+  cars.forEach(car => {
+    const carItem = document.createElement('div');
+    carItem.classList.add('car-item');
+    carItem.innerHTML = `
+      <div class="details">
+        <strong>Marka:</strong> ${car.marka} <br>
+        <strong>Model:</strong> ${car.model} <br>
+        <strong>Yıl:</strong> ${car.yil}
+      </div>
+      <div class="status ${car.kiralik ? '' : 'unavailable'}">
+        ${car.kiralik ? 'Kiralık' : 'Kiralık Değil'}
+      </div>
+    `;
+    carList.appendChild(carItem);
+  });
+}
 
-    // Sayfa yüklendiğinde fetchCars işlevini çağır
-    window.onload = fetchCars;
+// Sayfa yüklendiğinde fetchCars işlevini çağır
+window.onload = fetchCars;
+
 
   
     </script>

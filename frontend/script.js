@@ -1,76 +1,70 @@
-// API'den araçları getir ve sayfada göster
-async function araclariGetir() {
+// Yeni araç ekleme işlevi
+async function aracEkle() {
     try {
-        const response = await fetch('http://127.0.0.1:5500/aracimyanimda-main/frontend/index.html'); // API endpoint'inizi güncelleyin
-        const araclar = await response.json();
-        const container = document.getElementById('araclar-container');
-        container.innerHTML = '';
-
-        araclar.forEach(arac => {
-            const card = document.createElement('div');
-            card.classList.add('arac-card');    
-
-            // Araç bilgilerini içeren HTML
-            card.innerHTML = `
-                <h3>${arac.marka} ${arac.model}</h3>
-                <p>Yıl: ${arac.yil}</p>
-                <p>Kiralık: ${arac.kiralik ? 'Evet' : 'Hayır'}</p>
-                <button class="rezervasyon-button">Rezervasyon Yap</button>
-            `;
-
-            // Butona tıklanınca yönlendirme yap
-            const rezervasyonButton = card.querySelector('.rezervasyon-button');
-            rezervasyonButton.addEventListener('click', () => {
-                window.location.href = 'arac.html'; // Yönlendirme
-            });
-
-            container.appendChild(card);
+        const response = await fetch('http://localhost:3000/araclar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                marka: 'Honda',   // Burada eklemek istediğiniz araç bilgilerini güncelleyin
+                model: 'Civic',
+                yil: 2023,
+                kiralik: true
+            })
         });
+        
+        const data = await response.json();
+        console.log('Araç eklendi:', data);
+        
+        // Yeni araç eklendikten sonra listeyi güncelle
+        fetchCars();
+        
     } catch (error) {
-        console.error('Araçlar yüklenirken bir hata oluştu:', error);
+        console.error('Veri eklenirken hata:', error);
     }
 }
 
-// Sayfa yüklendiğinde araçları getir
-document.addEventListener('DOMContentLoaded', araclariGetir);
+// Sayfa yüklendiğinde gerekli işlevleri tanımla
+document.addEventListener('DOMContentLoaded', () => {
+    fetchCars();
 
-// Login butonuna tıklanınca başka bir sayfaya yönlendir
-document.getElementById('loginButton').addEventListener('click', function () {
-    window.location.href = 'login.html'; // Yönlendirilecek sayfa
+    // Yeni Araç Ekle butonuna tıklayınca aracEkle işlevini çalıştır
+    const addButton = document.getElementById('add-vehicle-button');
+    if (addButton) {
+        addButton.addEventListener('click', aracEkle);
+    }
 });
 
-const slides = document.querySelectorAll('.slide');
-const prevButton = document.querySelector('.prev');
-const nextButton = document.querySelector('.next');
-let currentSlide = 0;
+// Araçları getirme işlevi (mevcut fetchCars işleviniz)
+async function fetchCars() {
+    try {
+        const response = await fetch('http://localhost:3000/araclar');
+        const cars = await response.json();
+        displayCars(cars);
+    } catch (error) {
+        console.error('Araç verilerini alırken hata oluştu:', error);
+    }
+}
 
-function showSlide(index) {
-    slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
+// Araç verilerini sayfada gösterme işlevi (mevcut displayCars işleviniz)
+function displayCars(cars) {
+    const carList = document.getElementById('carList');
+    carList.innerHTML = '';  // Önceki içerikleri temizle
+
+    cars.forEach(car => {
+        const carItem = document.createElement('div');
+        carItem.classList.add('car-item');
+        carItem.innerHTML = `
+            <div class="details">
+                <strong>Marka:</strong> ${car.marka} <br>
+                <strong>Model:</strong> ${car.model} <br>
+                <strong>Yıl:</strong> ${car.yil}
+            </div>
+            <div class="status ${car.kiralik ? '' : 'unavailable'}">
+                ${car.kiralik ? 'Kiralık' : 'Kiralık Değil'}
+            </div>
+        `;
+        carList.appendChild(carItem);
     });
 }
-
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-}
-
-function prevSlide() {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
-}
-
-nextButton.addEventListener('click', nextSlide);
-prevButton.addEventListener('click', prevSlide);
-
-// Automatically change slides every 5 seconds
-setInterval(nextSlide, 5000);
-
-// Dark Mode Toggle
-const darkModeToggle = document.getElementById('darkModeToggle');
-const body = document.body;
-
-darkModeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode'); // Gece modunu aktif/pasif yapar.
-    darkModeToggle.classList.toggle('active'); // Animasyonu tetikler.
-});
