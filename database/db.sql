@@ -6,6 +6,7 @@ CREATE TABLE users (
 );
 
 DESCRIBE users;
+SELECT * FROM users;
 ALTER TABLE users
 ADD COLUMN phone VARCHAR(20); -- Telefon numarası sütunu ekler
 
