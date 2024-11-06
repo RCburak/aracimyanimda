@@ -14,5 +14,3 @@ INSERT INTO araclar (marka, model, yil, fiyat, kiralik) VALUES ('Mazda', 'Mazda3
 INSERT INTO araclar (marka, model, yil, fiyat, kiralik) VALUES ('Tesla', 'Model 3', 2022, 35000.00, true);
 INSERT INTO araclar (marka, model, yil, fiyat, kiralik) VALUES ('Jeep', 'Cherokee', 2019, 15000.00, false);
 INSERT INTO araclar (marka, model, yil, fiyat, kiralik) VALUES ('Subaru', 'Impreza', 2021, 8000.00, true);
-
-SELECT * FROM araclar;
