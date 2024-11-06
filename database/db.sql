@@ -38,6 +38,6 @@ DESCRIBE araclar;
 SELECT * FROM araclar;
 DELETE FROM araclar WHERE id = 1;
 DELETE FROM araclar;
-UPDATE `aracimyanimda`.`araclar` SET `id` = '1' WHERE (`id` = '2');
+UPDATE `aracimyanimda`.`araclar` SET `id` = '3' WHERE (`id` = '16');
 ALTER TABLE araclar ADD COLUMN kiralik TINYINT(1) DEFAULT 0;
 
