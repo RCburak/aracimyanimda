@@ -1,14 +1,14 @@
 // API'den araçları getir ve sayfada göster
 async function araclariGetir() {
     try {
-        const response = await fetch('http://localhost:3000/araclar'); // API endpoint'inizi güncelleyin
+        const response = await fetch('http://127.0.0.1:5500/aracimyanimda-main/frontend/index.html'); // API endpoint'inizi güncelleyin
         const araclar = await response.json();
         const container = document.getElementById('araclar-container');
         container.innerHTML = '';
 
         araclar.forEach(arac => {
             const card = document.createElement('div');
-            card.classList.add('arac-card');
+            card.classList.add('arac-card');    
 
             // Araç bilgilerini içeren HTML
             card.innerHTML = `
