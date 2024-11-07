@@ -1,52 +1,40 @@
+// server.js
 const express = require('express');
 const mysql = require('mysql2');
+
 const app = express();
-const path = require('path');
+const port = 3000;
 
-require('dotenv').config({ path: 'lock.env' });
-
-
+// MySQL veritabanı bağlantısı
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
+  host: 'localhost',       // Veritabanı sunucusunun adresi
+  user: 'root',            // Veritabanı kullanıcı adı
+  password: '',            // Veritabanı şifresi
+  database: 'car_rentals'  // Veritabanı adı
 });
 
-
-// Bağlantıyı kontrol et
+// Veritabanı bağlantısı
 db.connect((err) => {
   if (err) {
-    console.error('MySQL bağlantı hatası:', err);
+    console.error('Veritabanına bağlanırken hata oluştu: ' + err.stack);
     return;
   }
-  console.log('MySQL veritabanına bağlanıldı.');
+  console.log('Veritabanına başarılı bir şekilde bağlanıldı.');
 });
 
-// API endpoint'i: Araçları getiren endpoint
-app.get('/araclar', (req, res) => {
-  const sql = 'SELECT * FROM araclar'; // araclar tablosundaki tüm araçları getir
-  db.query(sql, (err, results) => {
+// Arabaları alacak API route
+app.get('/api/get_cars', (req, res) => {
+  const query = 'SELECT * FROM cars';
+  db.query(query, (err, results) => {
     if (err) {
-      console.error('Veritabanı sorgu hatası:', err);
-      res.status(500).send('Veritabanı hatası');
+      res.status(500).json({ message: 'Veritabanı hatası' });
       return;
     }
-    res.json(results);
+    res.json(results);  // Arabaları JSON formatında gönder
   });
 });
 
-// Statik dosyaları sunmak için frontend klasörünü kullanıyoruz
-app.use(express.static(path.join(__dirname, '../frontend')));
-
-// Ana sayfa isteği için index.html döndürüyoruz
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend', 'index.html'));
-});
-
-
-// Sunucuyu başlat
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Sunucu http://localhost:${PORT} adresinde çalışıyor.`);
+// Sunucu başlatma
+app.listen(port, () => {
+  console.log(`Sunucu ${port} portunda çalışıyor`);
 });
