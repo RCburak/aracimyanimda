@@ -17,3 +17,8 @@ DELETE FROM araclar;
 UPDATE `aracimyanimda`.`araclar` SET `id` = '3' WHERE (`id` = '16');
 ALTER TABLE araclar ADD COLUMN kiralik TINYINT(1) DEFAULT 0;
 
+CREATE USER 'enessahin'@'' IDENTIFIED BY 'RCburakkaya%57.';
+SELECT user, host FROM mysql.user;
+DROP USER 'enessahin'@'%';
+
+
