@@ -233,7 +233,11 @@ placeholder="Ex:City, airport or address">
     <button onclick="resetResult()">Reset</button>
     <button onclick="filterResults()">Filter</button>
 
-    <div id="carList" class="car-list">
+    
+        <div id="carList" class="car-list">
+            <!-- Araçlar buraya dinamik olarak eklenecek -->
+          </div>
+          
 
 
     </div>
@@ -264,41 +268,40 @@ placeholder="Ex:City, airport or address">
         }
 
         async function fetchCars() {
-            try {
-                // Node.js API'sini çağırıyoruz
-                const response = await fetch('http://localhost:3000/api/get_cars');  // API'nin yolu
-                const cars = await response.json();  // JSON formatında veriyi alıyoruz
-
-                // Arabaları sayfada göster
-                displayCars(cars);
-            } catch (error) {
-                console.error('Araç verilerini alırken hata oluştu:', error);
-            }
+        try {
+            const response = await fetch('/api/araclar');
+            const cars = await response.json();
+            displayCars(cars);
+        } catch (error) {
+            console.error('Araç verilerini alırken hata oluştu:', error);
         }
+    }
 
-        // Arabaları sayfada listele
-        function displayCars(cars) {
-            const carList = document.getElementById('carList');
-            carList.innerHTML = '';  // Önceki içerikleri temizle
+    // Araç verilerini sayfada göster
+    function displayCars(cars) {
+        const carList = document.getElementById('carList');
+        carList.innerHTML = '';  // Önceki içerikleri temizle
 
-            cars.forEach(car => {
-                const carItem = document.createElement('div');
-                carItem.classList.add('car-item');
-                carItem.innerHTML = `
+        cars.forEach(car => {
+            const carItem = document.createElement('div');
+            carItem.classList.add('car-item');
+            carItem.innerHTML = `
+                <div class="details">
                     <strong>Marka:</strong> ${car.marka} <br>
                     <strong>Model:</strong> ${car.model} <br>
-                    <strong>Yıl:</strong> ${car.yil} <br>
-                    <strong>Fiyat:</strong> ${car.fiyat} TL/gün <br>
-                    <div class="status ${car.kiralik ? 'available' : 'unavailable'}">
-                        ${car.kiralik ? 'Kiralık' : 'Kiralık Değil'}
-                    </div>
-                `;
-                carList.appendChild(carItem);
-            });
-        }
+                    <strong>Yıl:</strong> ${car.yil}
+                </div>
+                <div class="status ${car.kiralik ? '' : 'unavailable'}">
+                    ${car.kiralik ? 'Kiralık' : 'Kiralık Değil'}
+                </div>
+            `;
+            carList.appendChild(carItem);
+        });
+    }
 
-        // Sayfa yüklendiğinde arabaları çek
-        window.onload = fetchCars;
+    // Sayfa yüklendiğinde fetchCars işlevini çağır
+    window.onload = fetchCars;
+
   
     </script>
 

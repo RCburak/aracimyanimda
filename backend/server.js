@@ -1,40 +1,52 @@
-// server.js
 const express = require('express');
 const mysql = require('mysql2');
-
 const app = express();
-const port = 3000;
+const path = require('path');
 
-// MySQL veritabanı bağlantısı
+require('dotenv').config({ path: 'lock.env' });
+
+
 const db = mysql.createConnection({
-  host: 'localhost',       // Veritabanı sunucusunun adresi
-  user: 'root',            // Veritabanı kullanıcı adı
-  password: '',            // Veritabanı şifresi
-  database: 'car_rentals'  // Veritabanı adı
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 });
 
-// Veritabanı bağlantısı
+
+// Bağlantıyı kontrol et
 db.connect((err) => {
   if (err) {
-    console.error('Veritabanına bağlanırken hata oluştu: ' + err.stack);
+    console.error('MySQL bağlantı hatası:', err);
     return;
   }
-  console.log('Veritabanına başarılı bir şekilde bağlanıldı.');
+  console.log('MySQL veritabanına bağlanıldı.');
 });
 
-// Arabaları alacak API route
-app.get('/api/get_cars', (req, res) => {
-  const query = 'SELECT * FROM cars';
-  db.query(query, (err, results) => {
+// API endpoint'i: Araçları getiren endpoint
+app.get('/araclar', (req, res) => {
+  const sql = 'SELECT * FROM araclar'; // araclar tablosundaki tüm araçları getir
+  db.query(sql, (err, results) => {
     if (err) {
-      res.status(500).json({ message: 'Veritabanı hatası' });
+      console.error('Veritabanı sorgu hatası:', err);
+      res.status(500).send('Veritabanı hatası');
       return;
     }
-    res.json(results);  // Arabaları JSON formatında gönder
+    res.json(results);
   });
 });
 
-// Sunucu başlatma
-app.listen(port, () => {
-  console.log(`Sunucu ${port} portunda çalışıyor`);
+// Statik dosyaları sunmak için frontend klasörünü kullanıyoruz
+app.use(express.static(path.join(__dirname, '../frontend')));
+
+// Ana sayfa isteği için index.html döndürüyoruz
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend', 'index.html'));
+});
+
+
+// Sunucuyu başlat
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Sunucu http://localhost:${PORT} adresinde çalışıyor.`);
 });
