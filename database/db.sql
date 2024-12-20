@@ -10,6 +10,18 @@ SELECT * FROM users;
 ALTER TABLE users
 ADD COLUMN phone VARCHAR(20); -- Telefon numarası sütunu ekler
 
+
+CREATE TABLE cars (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    marka VARCHAR(255),
+    model VARCHAR(255),
+    yil INT,
+    kiralik BOOLEAN,
+    fiyat DECIMAL(10, 2)
+);
+
+
+
 DESCRIBE araclar;
 SELECT * FROM araclar;
 DELETE FROM araclar WHERE id = 1;
