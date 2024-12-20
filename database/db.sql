@@ -1,3 +1,4 @@
+USE aracimyanimda;
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
@@ -10,24 +11,20 @@ SELECT * FROM users;
 ALTER TABLE users
 ADD COLUMN phone VARCHAR(20); -- Telefon numarası sütunu ekler
 
-CREATE TABLE cars (
+CREATE TABLE araclar (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    marka VARCHAR(255),
-    model VARCHAR(255),
-    yil INT,
-    kiralik BOOLEAN,
-    fiyat DECIMAL(10, 2)
+    brand VARCHAR(255) NOT NULL,
+    model VARCHAR(255) NOT NULL,
+    year INT NOT NULL,
+    kiralik BOOLEAN DEFAULT FALSE,
+    cost DECIMAL(10, 2) NOT NULL,
+    categories VARCHAR(255),
+    transmission ENUM('Automatic', 'Manuel') DEFAULT 'Manual',
+    fueltype ENUM('Gasoline', 'Diesel', 'Electric', 'Hybrid') DEFAULT 'Gasoline'
 );
 
--- Örnek veriler
-INSERT INTO cars (marka, model, yil, kiralik, fiyat)
-VALUES
-    ('Ford', 'Fiesta', 2020, TRUE, 150.00),
-    ('Audi', 'A4', 2022, TRUE, 250.00),
-    ('Tesla', 'Model 3', 2023, FALSE, 500.00),
-    ('BMW', 'X5', 2021, TRUE, 300.00);
 
-
+SHOW TABLES;
 DESCRIBE araclar;
 SELECT * FROM araclar;
 DELETE FROM araclar WHERE id = 1;

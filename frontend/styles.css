@@ -26,7 +26,6 @@ body {
     display: flex;
     align-items: center;
     cursor: pointer;
-    /* Removed animation */
 }
 
 /* Logo Image */
@@ -65,12 +64,6 @@ body {
 
 .yanimda {
     color: white;
-}
-
-@keyframes colorChange {
-    0% { color: #e67e22; } /* Initial color */
-    50% { color: #fff; }   /* Middle color */
-    100% { color: #e67e22; } /* Final color */
 }
 
 /* Site Name Animation */
@@ -194,14 +187,21 @@ nav {
     color: #333;
 }
 
+/* Container for the car cards */
 .arac-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+    display: flex; /* Use flexbox for horizontal layout */
+    flex-wrap: nowrap; /* Prevent wrapping, making everything stay in a single row */
+    gap: 20px; /* Space between cards */
+    justify-content: flex-start; /* Align items to the start of the container */
+    overflow-x: auto; /* Allow horizontal scrolling if there are more items than fit on screen */
+    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
 }
 
-.arac-card {
+/* Car Item Styling */
+.car-item {
+    flex: 0 0 auto;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -210,24 +210,35 @@ nav {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.3s;
+    scroll-snap-align: start;
 }
 
-.arac-card:hover {
+.car-item:hover {
     transform: scale(1.05);
 }
 
-.arac-card h3 {
-    margin-bottom: 10px;
+/* Car Image */
+.car-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Car Title and Button */
+.car-details h3 {
+    margin-top: 15px;
     font-size: 24px;
+    color: #333;
 }
 
-.arac-card p {
-    margin: 5px 0;
+.car-details p {
     font-size: 16px;
+    color: #555;
+    margin: 10px 0;
 }
 
-.arac-card button {
-    margin-top: 10px;
+.car-details button {
     background-color: #e67e22;
     border: none;
     padding: 10px 20px;
@@ -237,13 +248,34 @@ nav {
     transition: background-color 0.3s;
 }
 
-.arac-card button:disabled {
-    background-color: #bbb;
-    cursor: not-allowed;
+.car-details button:hover {
+    background-color: #d35400;
 }
 
-.arac-card button:hover:not(:disabled) {
-    background-color: #d35400;
+/* Styling for prev and next buttons */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 1;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 /* Contact Section */
@@ -299,28 +331,39 @@ nav {
     text-decoration: underline; /* Underline on hover */
 }
 
-/* Office Hours */
-h3 {
-    margin: 20px 0 10px; /* Margin for headings */
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #f1f1f1;
 }
 
-/* Login Container: Alignment and Spacing */
-.login-container {
-    display: flex;
-    align-items: center;
-    gap: 30px; /* Space between login and dark mode button */
+.navbar.dark-mode {
+    background-color: #1e1e1e;
+}
+
+body.dark-mode .arac-card {
+    background-color: #2c2c2c;
+    color: white;
+}
+
+body.dark-mode .arac-card button {
+    background-color: #4caf50;
+}
+
+body.dark-mode .arac-card button:hover {
+    background-color: #45a049;
 }
 
 /* Dark Mode Toggle Button */
 .dark-mode-toggle {
     width: 50px;
-    height: 28px;
+    height: 35px;
     background-color: #ddd;
     border-radius: 28px;
     border: none;
     cursor: pointer;
-    position: relative;
-    padding: 0;
+    position: absolute;
+    right: 150px; /* Move to the left side of the navbar */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -362,17 +405,20 @@ h3 {
     transform: translateX(0); /* Moon appears */
 }
 
-/* Dark Mode Styles */
-body.dark-mode {
-    background-color: #121212;
-    color: #f1f1f1;
-}
-
-.navbar.dark-mode {
-    background-color: #1e1e1e;
-}
-
-body.dark-mode .arac-card {
-    background-color: #2c2c2c;
+.book-now-btn {
+    background-color: #4CAF50; /* Green background */
     color: white;
+    padding: 2px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none; /* Remove underline for the anchor tag */
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
+
+.book-now-btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+
