@@ -23,16 +23,17 @@ db.connect((err) => {
   console.log('MySQL veritabanına bağlanıldı.');
 });
 
-// API endpoint'i: Araçları getiren endpoint
+app.use(express.json()); // JSON formatında veri almak için
+
+// Araçları listelemek için yeni endpoint
 app.get('/araclar', (req, res) => {
-  const sql = 'SELECT * FROM araclar'; // araclar tablosundaki tüm araçları getir
-  db.query(sql, (err, results) => {
+  const sql = 'SELECT * FROM araclar';  // Tüm araçları al
+  db.query(sql, (err, result) => {
     if (err) {
-      console.error('Veritabanı sorgu hatası:', err);
-      res.status(500).send('Veritabanı hatası');
-      return;
+      console.error('Veri çekme hatası:', err);
+      return res.status(500).send('Veri çekme hatası');
     }
-    res.json(results);
+    res.json(result);  // Araç verilerini JSON olarak gönder
   });
 });
 
