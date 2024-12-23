@@ -361,7 +361,6 @@
         const minPrice = document.getElementById('minPrice').value;
         const maxPrice = document.getElementById('maxPrice').value;
 
-        // Seçili filtreleri alıyoruz
         const selectedFilters = {
             categories: {
                 compact: document.getElementById('compact').checked,
@@ -384,28 +383,24 @@
         };
 
         const filteredCars = allCars.filter(car => {
-            // Kategori filtrelerini uygula
             const matchesCategory = Object.keys(selectedFilters.categories).some(category => 
                 selectedFilters.categories[category] && car.category === category
             );
 
-            // Vites filtrelerini uygula
             const matchesTransmission = Object.keys(selectedFilters.transmission).some(transmission => 
                 selectedFilters.transmission[transmission] && car.transmission === transmission
             );
 
-            // Yakıt tipi filtrelerini uygula
             const matchesFuelType = Object.keys(selectedFilters.fuelType).some(fuel => 
                 selectedFilters.fuelType[fuel] && car.fuelType === fuel
             );
 
-            // Fiyat filtrelerini uygula
             const matchesPrice = (!minPrice || car.price >= minPrice) && (!maxPrice || car.price <= maxPrice);
 
             return matchesCategory && matchesTransmission && matchesFuelType && matchesPrice;
         });
 
-        displayCars(filteredCars);  // Filtrelenmiş araçları göster
+        displayCars(filteredCars);
     }
 
     function resetResult() {
@@ -414,18 +409,13 @@
         });
         document.getElementById('minPrice').value = '';
         document.getElementById('maxPrice').value = '';
-        document.getElementById('pickup-location').value = '';
-        document.getElementById('pickup-date').value = '';
-        document.getElementById('pickup-time').value = '';
-        document.getElementById('dropoff-date').value = '';
-        document.getElementById('dropoff-time').value = '';
     }
 
-    const UNSPLASH_API_KEY = 'pftSBzuuwcq2WGJqTZs9cGfX007Qbo5lwMSWYyCl2-c';
+    const UNSPLASH_API_KEY = 'elRlm2laRZ9vqHlRGVPfJ8nIWzZogHmttMsb9StTvEA';
 
     async function fetchCarImageFromAPI(car) {
         const query = `${car.marka} ${car.model}`;
-        const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&client_id=pftSBzuuwcq2WGJqTZs9cGfX007Qbo5lwMSWYyCl2-c`;
+        const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&client_id=${UNSPLASH_API_KEY}`;
         try {
             const response = await fetch(url);
             const data = await response.json();
@@ -452,13 +442,17 @@
         const carList = document.getElementById('carList');
         carList.innerHTML = '';
 
+        if (cars.length === 0) {
+            carList.innerHTML = '<p>No cars found matching your filters.</p>';
+            return;
+        }
+
         for (const car of cars) {
             const imageURL = await fetchCarImageFromAPI(car);
 
-            // Fiyat hesaplama (varsayılan olarak 1000 TL/gün)
-            const dailyPrice = car.dailyPrice || 1000;  // Günlük fiyat
-            const rentalDays = 7;  // Örnek: 7 gün kiralama
-            const totalPrice = dailyPrice * rentalDays;  // Toplam fiyat
+            const dailyPrice = car.dailyPrice || 1000;
+            const rentalDays = 7;
+            const totalPrice = dailyPrice * rentalDays;
 
             const carItem = document.createElement('div');
             carItem.classList.add('car-item');

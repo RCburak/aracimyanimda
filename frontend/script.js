@@ -1,10 +1,10 @@
 
-const UNSPLASH_API_KEY = 'pftSBzuuwcq2WGJqTZs9cGfX007Qbo5lwMSWYyCl2-c';
+const UNSPLASH_API_KEY = 'elRlm2laRZ9vqHlRGVPfJ8nIWzZogHmttMsb9StTvEA';
 
         // Fetch image from Unsplash API based on car brand and model
         async function fetchCarImageFromAPI(car) {
             const query = `${car.marka} ${car.model}`;
-            const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&client_id=${UNSPLASH_API_KEY}`;
+            const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&client_id=${elRlm2laRZ9vqHlRGVPfJ8nIWzZogHmttMsb9StTvEA}`;
             try {
                 const response = await fetch(url);
                 const data = await response.json();
@@ -15,44 +15,40 @@ const UNSPLASH_API_KEY = 'pftSBzuuwcq2WGJqTZs9cGfX007Qbo5lwMSWYyCl2-c';
             }
         }
 
-        // Fetch car data from backend
+         // Fetch Cars
+
         async function fetchCars() {
             try {
                 const response = await fetch('http://localhost:3000/araclar');
                 const cars = await response.json();
                 displayCars(cars);
             } catch (error) {
-                console.error('Araç verilerini alırken hata oluştu:', error);
+                console.error('Error fetching cars:', error);
             }
         }
 
-        // Display the car data and dynamically add images
         async function displayCars(cars) {
             const carContainer = document.getElementById('araclar-container');
-            carContainer.innerHTML = ''; // Clear previous cars
-
+            carContainer.innerHTML = '';
             for (const car of cars) {
-                // Fetch car image based on the brand and model
-                const imageURL = await fetchCarImageFromAPI(car);
-
-                // Create a new car item and add it to the container
+                const imageURL = car.imageUrl;
                 const carItem = document.createElement('div');
                 carItem.classList.add('car-item');
                 carItem.innerHTML = `
                     <div class="car-image">
                         <img src="${imageURL}" alt="${car.marka} ${car.model}">
                     </div>
-                    <div class="car-details">
-                        <h3>${car.marka} ${car.model}</h3>
-                        <p><strong>${car.year}</strong> | ${car.km} km</p>
-                        <button>Aracı Kirala</button>
+                    <div class="details">
+                        <strong>Brand:</strong> ${car.marka}<br>
+                        <strong>Model:</strong> ${car.model}<br>
+                        <strong>Year:</strong> ${car.yil}<br>
+                        <a href="arac.html" class="book-now-btn">Book Now</a>
                     </div>
                 `;
                 carContainer.appendChild(carItem);
             }
         }
 
-        // Load cars when the page is ready
         window.onload = fetchCars;
 
 
@@ -89,11 +85,25 @@ prevButton.addEventListener('click', prevSlide);
 // Automatically change slides every 5 seconds
 setInterval(nextSlide, 5000);
 
-// Dark Mode Toggle
-const darkModeToggle = document.getElementById('darkModeToggle');
-const body = document.body;
 
-darkModeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode'); // Gece modunu aktif/pasif yapar.
-    darkModeToggle.classList.toggle('active'); // Animasyonu tetikler.
-});
+
+
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        document.addEventListener('DOMContentLoaded', () => {
+            const isDarkMode = localStorage.getItem('darkMode') === 'enabled';
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.classList.add('active');
+            }
+        });
+
+        darkModeToggle.addEventListener('click', () => {
+            const isDarkMode = document.body.classList.toggle('dark-mode');
+            darkModeToggle.classList.toggle('active');
+            localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
+        });
+
+      
+
+       

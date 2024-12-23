@@ -16,7 +16,6 @@ const __dirname = path.dirname(__filename);
 // .env dosyasını yükleyin
 dotenv.config({ path: 'lock.env' });
 
-
 const UNSPLASH_API_KEY = process.env.UNSPLASH_API_KEY;
 
 // Express uygulamasını oluştur
@@ -31,8 +30,6 @@ const db = mysql.createPool({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
 });
-
-
 
 // AdminJS yapılandırması
 const adminJs = new AdminJS({
@@ -81,23 +78,6 @@ const adminRouter = AdminJSExpress.buildRouter(adminJs);
   // Ana sayfa isteğini index.html döndür
   app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend', 'index.html'));
-  });
-
-  // AI chat endpoint'i oluştur
-  app.post('/api/chat', async (req, res) => {
-    const { message } = req.body;
-
-    try {
-      const response = await openai.createCompletion({
-        model: 'gpt-3.5-turbo',
-        prompt: message,
-        max_tokens: 100,
-      });
-      res.json({ response: response.data.choices[0].text.trim() });
-    } catch (error) {
-      console.error('AI API hatası:', error);
-      res.status(500).send('AI API hatası');
-    }
   });
 
   const PORT = process.env.PORT || 3000;
