@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login / Sign Up Sayfası</title>
+  <link rel="stylesheet" href="login.css">
+  <style></style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <div class="form-toggle">
+        <button id="login-toggle" onclick="toggleForm('login')">Giriş Yap</button>
+        <button id="signup-toggle" onclick="toggleForm('signup')">Kayıt Ol</button>
+      </div>
+
+      <!-- Giriş Formu -->
+      <form id="login-form" class="form">
+        <h2>Giriş Yap</h2>
+        <input type="text" placeholder="E-posta" required>
+        <input type="password" placeholder="Şifre" required>
+        <button type="submit">Giriş Yap</button>
+      </form>
+
+      <!-- Kayıt Ol Formu -->
+      <form id="signup-form" class="form" style="display: none;">
+        <h2>Kayıt Ol</h2>
+        <input type="text" placeholder="Ad Soyad" required>
+        <input type="email" placeholder="E-posta" required>
+        <input type="password" placeholder="Şifre" required>
+        <input type="password" placeholder="Şifre Tekrar" required>
+        <button type="submit">Kayıt Ol</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>
