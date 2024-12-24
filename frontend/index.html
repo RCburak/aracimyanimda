@@ -24,7 +24,6 @@
                 <li><a href="arac.html">Reservation</a></li>
             </ul>
         </nav>
-        <!-- Login and Dark Mode Buttons -->
         <div class="login-container">
             <button class="dark-mode-toggle" id="darkModeToggle">
                 <span class="sun-icon">☀️</span>
@@ -32,7 +31,6 @@
             </button>
             <button class="login-button" id="loginButton">Login / Sign Up</button>
         </div>
-        
     </header>
 
     <!-- Slider Section -->
@@ -44,89 +42,161 @@
             <img src="images/arkaplan3.jpg" alt="Logo">
         </div>
 
-        <!-- Slider Controls -->
         <button class="prev">&#10094;</button>
         <button class="next">&#10095;</button>
     </section>
 
-     <!-- Car List Section -->
-     <section id="cars" class="arac-listesi">
+    <!-- Car List Section -->
+    <section id="cars" class="arac-listesi">
         <h2>Our Available Cars</h2>
-        <div id="araclar-container" class="arac-container">
-            <div class="arac-card">
-                <h3>Brand 1 Model 1</h3>
-                <p>Year: 2020</p>
-                <p>Available: Yes</p>
-                <img src="images/car1.jpeg" alt=""
-                style="width: 200px;"
-                style="height: 200px;">
-                <br><br>
-                <button>Book Now</button>
-            </div>
-            <div class="arac-card">
-                <h3>Brand 2 Model 2</h3>
-                <p>Year: 2020</p>
-                <p>Available: Yes</p>
-                <img src="images/car2.jpg" alt=""
-                style="width: 200px;"
-                style="height: 200px;">
-                <button>Book Now</button>
-            </div>
-            <div class="arac-card">
-                <h3>Brand 3 Model 3</h3>
-                <p>Year: 2022</p>
-                <p>Available: Yes</p>
-                <img src="images/car3.jpg" alt=""
-                style="width: 200px;"
-                style="height: 200px;"  >
-                <button>Book Now</button>
-            </div>
+        <div class="arac-container" id="araclar-container">
+            <!-- Car cards will be dynamically loaded here -->
         </div>
     </section>
 
+    
+
     <!-- Contact Section -->
-<section id="contact" class="iletisim">
-    <h2>Contact Us</h2>
-    <p>Your feedback is important to us! If you have any questions, suggestions, or need assistance, please reach out.</p>
-    
-    <div class="contact-info">
-        <div class="info-item">
-            <span class="icon">📞</span>
-            <div>
-                <h3>Phone</h3>
-                <p><strong>+90 (551) 554-7538</strong></p>
+    <section id="contact" class="iletisim">
+        <h2>Contact Us</h2>
+        <p>Your feedback is important to us! If you have any questions, suggestions, or need assistance, please reach out.</p>
+        <div class="contact-info">
+            <div class="info-item">
+                <span class="icon">📞</span>
+                <div>
+                    <h3>Phone</h3>
+                    <p><strong>+90 (551) 554-7538</strong></p>
+                </div>
+            </div>
+            <div class="info-item">
+                <span class="icon">✉️</span>
+                <div>
+                    <h3>Email</h3>
+                    <p><strong>supportaracimyanimda@gmail.com</strong></p>
+                </div>
+            </div>
+            <div class="info-item">
+                <span class="icon">🏢</span>
+                <div>
+                    <h3>Visit Us</h3>
+                    <p>Türkiye/İstanbul<br>Beykoz Üniversitesi</p>
+                </div>
             </div>
         </div>
-        
-        <div class="info-item">
-            <span class="icon">✉️</span>
-            <div>
-                <h3>Email</h3>
-                <p><strong>supportaracimyanimda@gmail.com</strong></p>
-            </div>
+        <div class="social-media">
+            <h3>Follow Us</h3>
+            <p>Stay connected on social media:</p>
+            <p>
+                <a href="https://instagram.com/burakkaya.57" target="_blank">Instagram</a> |
+                <a href="https://facebook.com/aracimyanimda" target="_blank">Facebook</a> |
+                <a href="https://twitter.com/aracimyanimda" target="_blank">Twitter</a>
+            </p>
         </div>
-        
-        <div class="info-item">
-            <span class="icon">🏢</span>
-            <div>
-                <h3>Visit Us</h3>
-                <p>Türkiye/İstanbul<br>Beykoz Üniversitesi</p>
-            </div>
-        </div>
-    </div>
-    
-    <div class="social-media">
-        <h3>Follow Us</h3>
-        <p>Stay connected on social media:</p>
-        <p>
-            <a href="https://instagram.com/burakkaya.57" target="_blank">Instagram</a> |
-            <a href="https://facebook.com/aracimyanimda" target="_blank">Facebook</a> |
-            <a href="https://twitter.com/aracimyanimda" target="_blank">Twitter</a>
-        </p>
-    </div>
-</section>
+    </section>
 
+    <script>
 
-    <script src="script.js"></script>
+    // Login butonuna tıklanınca başka bir sayfaya yönlendir
+document.getElementById('loginButton').addEventListener('click', function () {
+    window.location.href = 'login.html'; // Yönlendirilecek sayfa
+});
+
+const slides = document.querySelectorAll('.slide');
+const prevButton = document.querySelector('.prev');
+const nextButton = document.querySelector('.next');
+let currentSlide = 0;
+
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+    });
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+}
+
+nextButton.addEventListener('click', nextSlide);
+prevButton.addEventListener('click', prevSlide);
+
+// Automatically change slides every 5 seconds
+setInterval(nextSlide, 5000);
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        document.addEventListener('DOMContentLoaded', () => {
+            const isDarkMode = localStorage.getItem('darkMode') === 'enabled';
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.classList.add('active');
+            }
+        });
+
+        darkModeToggle.addEventListener('click', () => {
+            const isDarkMode = document.body.classList.toggle('dark-mode');
+            darkModeToggle.classList.toggle('active');
+            localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
+        });
+
+      
+
+        // Fetch Cars
+        const UNSPLASH_API_KEY = 'elRlm2laRZ9vqHlRGVPfJ8nIWzZogHmttMsb9StTvEA-c';
+
+        // Fetch image from Unsplash API based on car brand and model
+        async function fetchCarImageFromAPI(car) {
+            const query = `${car.marka} ${car.model}`;
+            const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&client_id=${elRlm2laRZ9vqHlRGVPfJ8nIWzZogHmttMsb9StTvEA}`;
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                return data.results[0]?.urls?.regular || 'https://via.placeholder.com/300';  // Fallback image
+            } catch (error) {
+                console.error('Resim alınırken hata oluştu:', error);
+                return 'https://via.placeholder.com/300';  // Fallback image in case of error
+            }
+        }
+        
+        async function fetchCars() {
+            try {
+                const response = await fetch('http://localhost:3000/araclar');
+                const cars = await response.json();
+                displayCars(cars);
+            } catch (error) {
+                console.error('Error fetching cars:', error);
+            }
+        }
+
+        async function displayCars(cars) {
+            const carContainer = document.getElementById('araclar-container');
+            carContainer.innerHTML = '';
+            for (const car of cars) {
+                const imageURL = car.imageUrl;
+                const carItem = document.createElement('div');
+                carItem.classList.add('car-item');
+                carItem.innerHTML = `
+                    <div class="car-image">
+                        <img src="${imageURL}" alt="${car.marka} ${car.model}">
+                    </div>
+                    <div class="details">
+                        <strong>Brand:</strong> ${car.marka}<br>
+                        <strong>Model:</strong> ${car.model}<br>
+                        <strong>Year:</strong> ${car.yil}<br>
+                        <a href="arac.html" class="book-now-btn">Book Now</a>
+                    </div>
+                `;
+                carContainer.appendChild(carItem);
+            }
+        }
+
+        window.onload = fetchCars;
+
+        
+    </script>
 </body>
 </html>

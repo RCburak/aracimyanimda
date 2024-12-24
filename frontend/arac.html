@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-
-body {
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
@@ -16,7 +14,7 @@ body {
             color: #495057;
         }
 
-input[type="date"],
+        input[type="date"],
         input[type="time"] {
             padding: 20px;
             width: 150px;
@@ -24,16 +22,12 @@ input[type="date"],
             border-radius: 5px;
             margin-top: 20px;
             border-radius: 10px;
-            
-            
         }
 
-        input[type="text"]{
+        input[type="text"] {
             padding: 20px;
             width: 500px;
             border-radius: 10px;
-
-
         }
 
         button {
@@ -46,6 +40,7 @@ input[type="date"],
             margin-top: 10px;
             display: inline-block;
         }
+
         button:hover {
             background-color: #FF7F00;
         }
@@ -54,8 +49,118 @@ input[type="date"],
             color: #007bff;
             margin-bottom: 15px;
         }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .filter-section {
+            width: 30%;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 20px;
+            height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+
+        .car-list {
+            width: 65%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: 100vh;
+            overflow-y: scroll;
+        }
+
+        .car-item {
+            display: flex;
+            background: #ffffff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .car-image {
+            flex: 1;
+            max-width: 200px;
+            padding-right: 20px;
+        }
+
+        .car-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .details {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .status {
+            margin-top: 10px;
+            padding: 5px;
+            font-weight: bold;
+        }
+
+        .status.unavailable {
+            color: red;
+        }
+
+        .status.available {
+            color: green;
+        }
+
+        .price-info {
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .price-info p {
+            margin: 5px 0;
+        }
+
+        .price-info .total-price {
+            color: #e74c3c;
+            font-size: 18px;
+        }
+
+        .price-info .price-range {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .price-info .price-range input {
+            width: 80px;
+            padding: 5px;
+            margin-right: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+
+        .price-info button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .price-info button:hover {
+            background-color: #218838;
+        }
+
         table {
-            width: 20%;
+            width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
             background: #ffffff;
@@ -63,209 +168,269 @@ input[type="date"],
             overflow: hidden;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
+
         th, td {
             padding: 10px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
+
         th {
             background-color: #007bff;
             color: white;
         }
-        .price-range {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-        }
-        .price-range input {
-            width: 80px;
-            padding: 5px;
-            margin-right: 10px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-        }
-        label {
-            margin:  0;
-            display: block;
-            font-weight: bold;
-        }
 
         @media (max-width: 768px) {
-            .form-row {
+            .container {
                 flex-direction: column;
             }
-        }
-        .car-list {
-            margin-top: 20px;
-        }
-        .car-item {
-            background: #ffffff;
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
 
-        .arac-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    width: 300px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s;
+            .filter-section {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .car-list {
+                width: 100%;
+            }
+        }
+        .logo-resim {
+    width: 40px;
+    height: 40px;
+    margin-left: 50px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.arac-card:hover {
-    transform: scale(1.05);
+.site-name {
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    opacity: 0; /* Initially hidden */
+    animation: fadeIn 1s forwards; /* Fade in animation */
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px); /* Slide down effect */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
+/* Colorful Titles */
+.aracim {
+    color: #e67e22;
+}
 
-
+.yanimda {
+    color: white;
+}
+/* Additional styles */
+.logo-container a {
+        text-decoration: none;  /* Remove underline from the link */
+    }
     </style>
 </head>
 <body>
+
+
+    <div class="logo-container">
+        <a href="index.html">
+            <img src="images/logo.jpeg" alt="Site Logo" class="logo-resim">
+            <div class="site-name">
+                <span class="aracim">Aracım</span><span class="yanimda">Yanımda</span>
+            </div>
+        </a>
+    </div>
     
-<button>
-    <i class="fas fa-car button-icon"></i>
-    Araç Kirala
-</button>
+
+    <button>
+        <i class="fas fa-car button-icon"></i>
+    Rent a Car</button>
+    
 <br>
 
-
-<input type="text" name="" id=""
-
-placeholder="Ex:City, airport or address">
-
-
-
+<input type="text" name="" id="" placeholder="Ex: City,airport,or address">
 <input type="date" name="" id="">
 <input type="time" name="" id="">
 <input type="date" name="" id="">
 <input type="time" name="" id="">
 
-<button>ARAÇ ARA</button>
+<button>Search Car</button>
 <br>
-<input type="checkbox" name="" id="">
-<label for="">Farklı yerde bırakmak istiyorum</label>
 
 <hr>
 
-<h2>Filter</h2>
-    <table>
-        <tr>
-            <th>Categories</th>
-            <th>Choice</th>
-        </tr>
-        <tr>
-            <td>Compact Car</td>
-            <td><input type="checkbox" id="compact"></td>
-        </tr>
-        <tr>
-            <td>Sedan</td>
-            <td><input type="checkbox" id="sedan"></td>
-        </tr>
-        <tr>
-            <td>SUV</td>
-            <td><input type="checkbox" id="suv"></td>
-        </tr>
-        <tr>
-            <td>Electric Car</td>
-            <td><input type="checkbox" id="electricCar"></td>
-        </tr>
-        <tr>
-            <td>Sports Car</td>
-            <td><input type="checkbox" id="sports"></td>
-        </tr>
-        <tr>
-            <td>Luxury Car</td>
-            <td><input type="checkbox" id="luxury"></td>
-        </tr>
-    </table>
+<div class="container">
+    <!-- Filtreleme Bölümü -->
+    <div class="filter-section">
+        <h2>Filter</h2>
+        <table>
+            <tr>
+                <th>Categories</th>
+                <th>Choose</th>
+            </tr>
+            <tr>
+                <td>Compact Car</td>
+                <td><input type="checkbox" id="compact"></td>
+            </tr>
+            <tr>
+                <td>Sedan</td>
+                <td><input type="checkbox" id="sedan"></td>
+            </tr>
+            <tr>
+                <td>SUV</td>
+                <td><input type="checkbox" id="suv"></td>
+            </tr>
+            <tr>
+                <td>Electric Car</td>
+                <td><input type="checkbox" id="electricCar"></td>
+            </tr>
+            <tr>
+                <td>Sports Car</td>
+                <td><input type="checkbox" id="sports"></td>
+            </tr>
+            <tr>
+                <td>Luxury Car</td>
+                <td><input type="checkbox" id="luxury"></td>
+            </tr>
+        </table>
 
-    <table>
-        <tr>
-            <th>Transmission</th>
-            <th>Choice</th>
-        </tr>
-        <tr>
-            <td>Manual</td>
-            <td><input type="checkbox" id="manual"></td>
-        </tr>
-        <tr>
-            <td>Automatic</td>
-            <td><input type="checkbox" id="auto"></td>
-        </tr>
-    </table>
+        <table>
+            <tr>
+                <th>Transmission</th>
+                <th>Choose</th>
+            </tr>
+            <tr>
+                <td>Manual</td>
+                <td><input type="checkbox" id="manual"></td>
+            </tr>
+            <tr>
+                <td>Automatic</td>
+                <td><input type="checkbox" id="auto"></td>
+            </tr>
+        </table>
 
-    <table>
-        <tr>
-            <th>Fuel Type</th>
-            <th>Choice</th>
-        </tr>
-        <tr>
-            <td>Gasoline</td>
-            <td><input type="checkbox" id="petrol"></td>
-        </tr>
-        <tr>
-            <td>Diesel</td>
-            <td><input type="checkbox" id="diesel"></td>
-        </tr>
-        <tr>
-            <td>Electric</td>
-            <td><input type="checkbox" id="electric"></td>
-        </tr>
-        <tr>
-            <td>Hybrid</td>
-            <td><input type="checkbox" id="hybrid"></td>
-        </tr>
-    </table>
+        <table>
+            <tr>
+                <th>Fuel Type</th>
+                <th>Choose</th>
+            </tr>
+            <tr>
+                <td>Gasoline</td>
+                <td><input type="checkbox" id="petrol"></td>
+            </tr>
+            <tr>
+                <td>Diesel</td>
+                <td><input type="checkbox" id="diesel"></td>
+            </tr>
+            <tr>
+                <td>Electric</td>
+                <td><input type="checkbox" id="electric"></td>
+            </tr>
+            <tr>
+                <td>Hybrid</td>
+                <td><input type="checkbox" id="hybrid"></td>
+            </tr>
+        </table>
 
-    <div class="price-range">
-        <label for="minPrice">Min:</label>
-        <input type="number" id="minPrice" placeholder="0">
-        
-        <label for="maxPrice">Max:</label>
-        <input type="number" id="maxPrice" placeholder="10000">
+        <div class="price-range">
+            <label for="minPrice">Min:</label>
+            <input type="number" id="minPrice" placeholder="0">
+            
+            <label for="maxPrice">Max:</label>
+            <input type="number" id="maxPrice" placeholder="10000">
+        </div>
+
+        <button onclick="resetResult()">Reset</button>
+        <button onclick="filterResults()">Filter</button>
     </div>
 
-    <button onclick="resetResult()">Reset</button>
-    <button onclick="filterResults()">Filter</button>
-
+    <!-- Araç Listesi Bölümü -->
     <div id="carList" class="car-list">
-
-
+        <!-- Araçlar burada dinamik olarak eklenecek -->
     </div>
+</div>
 
-    
+<script>
+    function filterResults() {
+        const minPrice = document.getElementById('minPrice').value;
+        const maxPrice = document.getElementById('maxPrice').value;
 
-    <script>
-        function filterResults() {
-            const minPrice = document.getElementById('minPrice').value;
-            const maxPrice = document.getElementById('maxPrice').value;
-            const manualChecked = document.getElementById('manual').checked;
-            const autoChecked = document.getElementById('auto').checked;
+        const selectedFilters = {
+            categories: {
+                compact: document.getElementById('compact').checked,
+                sedan: document.getElementById('sedan').checked,
+                suv: document.getElementById('suv').checked,
+                electricCar: document.getElementById('electricCar').checked,
+                sports: document.getElementById('sports').checked,
+                luxury: document.getElementById('luxury').checked,
+            },
+            transmission: {
+                manual: document.getElementById('manual').checked,
+                auto: document.getElementById('auto').checked,
+            },
+            fuelType: {
+                petrol: document.getElementById('petrol').checked,
+                diesel: document.getElementById('diesel').checked,
+                electric: document.getElementById('electric').checked,
+                hybrid: document.getElementById('hybrid').checked,
+            }
+        };
 
-            alert(`Filtering results:\nMin Price: ${minPrice}\nMax Price: ${maxPrice}\nManual: ${manualChecked}\nAuto: ${autoChecked}`);
-        }
+        const filteredCars = allCars.filter(car => {
+            const matchesCategory = Object.keys(selectedFilters.categories).some(category => 
+                selectedFilters.categories[category] && car.category === category
+            );
 
-        function resetResult() {
-            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-                checkbox.checked = false;
-            });
-            document.getElementById('minPrice').value = '';
-            document.getElementById('maxPrice').value = '';
-            document.getElementById('pickup-location').value = '';
-            document.getElementById('pickup-date').value = '';
-            document.getElementById('pickup-time').value = '';
-            document.getElementById('dropoff-date').value = '';
-            document.getElementById('dropoff-time').value = '';
-        }
+            const matchesTransmission = Object.keys(selectedFilters.transmission).some(transmission => 
+                selectedFilters.transmission[transmission] && car.transmission === transmission
+            );
 
-        async function fetchCars() {
+            const matchesFuelType = Object.keys(selectedFilters.fuelType).some(fuel => 
+                selectedFilters.fuelType[fuel] && car.fuelType === fuel
+            );
+
+            const matchesPrice = (!minPrice || car.price >= minPrice) && (!maxPrice || car.price <= maxPrice);
+
+            return matchesCategory && matchesTransmission && matchesFuelType && matchesPrice;
+        });
+
+        displayCars(filteredCars);
+    }
+
+    function resetResult() {
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.checked = false;
+        });
+        document.getElementById('minPrice').value = '';
+        document.getElementById('maxPrice').value = '';
+    }
+
+    const UNSPLASH_API_KEY = 'elRlm2laRZ9vqHlRGVPfJ8nIWzZogHmttMsb9StTvEA';
+
+    async function fetchCarImageFromAPI(car) {
+        const query = `${car.marka} ${car.model}`;
+        const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&client_id=${UNSPLASH_API_KEY}`;
         try {
-            const response = await fetch('/api/araclar');
+            const response = await fetch(url);
+            const data = await response.json();
+            return data.results[0]?.urls?.regular;
+        } catch (error) {
+            console.error('Resim alınırken hata oluştu:', error);
+            return 'https://via.placeholder.com/300';
+        }
+    }
+
+    window.onload = fetchCars;
+
+    async function fetchCars() {
+        try {
+            const response = await fetch('http://localhost:3000/araclar');
             const cars = await response.json();
             displayCars(cars);
         } catch (error) {
@@ -273,35 +438,46 @@ placeholder="Ex:City, airport or address">
         }
     }
 
-    // Araç verilerini sayfada göster
-    function displayCars(cars) {
+    async function displayCars(cars) {
         const carList = document.getElementById('carList');
-        carList.innerHTML = '';  // Önceki içerikleri temizle
+        carList.innerHTML = '';
 
-        cars.forEach(car => {
+        if (cars.length === 0) {
+            carList.innerHTML = '<p>No cars found matching your filters.</p>';
+            return;
+        }
+
+        for (const car of cars) {
+            const imageURL = await fetchCarImageFromAPI(car);
+
+            const dailyPrice = car.dailyPrice || 1000;
+            const rentalDays = 7;
+            const totalPrice = dailyPrice * rentalDays;
+
             const carItem = document.createElement('div');
             carItem.classList.add('car-item');
             carItem.innerHTML = `
-                <div class="details">
-                    <strong>Marka:</strong> ${car.marka} <br>
-                    <strong>Model:</strong> ${car.model} <br>
-                    <strong>Yıl:</strong> ${car.yil}
+                <div class="car-image">
+                    <img src="${imageURL}" alt="${car.marka} ${car.model}">
                 </div>
-                <div class="status ${car.kiralik ? '' : 'unavailable'}">
-                    ${car.kiralik ? 'Kiralık' : 'Kiralık Değil'}
+                <div class="details">
+                    <strong>Brand:</strong> ${car.marka} <br>
+                    <strong>Model:</strong> ${car.model} <br>
+                    <strong>Year:</strong> ${car.yil}
+                    <div class="status ${car.kiralik ? 'available' : 'unavailable'}">
+                        ${car.kiralik ? 'Rent' : 'Not for Rent'}
+                    </div>
+                    <div class="price-info">
+                        <p><strong>Günlük Fiyat:</strong> ${dailyPrice} TL</p>
+                        <p><strong>Toplam Fiyat:</strong> <span class="total-price">${totalPrice} TL</span></p>
+                        <button>Rent a Vehicle Now</button>
+                    </div>
                 </div>
             `;
             carList.appendChild(carItem);
-        });
+        }
     }
-
-    // Sayfa yüklendiğinde fetchCars işlevini çağır
-    window.onload = fetchCars;
-
-  
-    </script>
-
-
+</script>
 
 </body>
 </html>
